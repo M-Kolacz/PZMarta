@@ -1,8 +1,9 @@
 import React from 'react';
-import { Grid, Typography, Hidden } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 
-import Logo from '../../shared/UIElements/Logo/Logo';
-import Button from '../../shared/components/Button/Button';
+import { NotificationButtons } from '../../shared/SSOT/NotificationButtons';
+
+import NavigationItem from '../../shared/components/NavigationItem/NavigationItem';
 
 import useStyles from './NavigationStyles';
 
@@ -11,26 +12,20 @@ export interface NavigationProps {}
 const Navigation: React.FC<NavigationProps> = () => {
     const classes = useStyles();
     return (
-        <Grid container item xs={12} className={classes.NavigationContainer} component='header'>
-            <Logo xs={6} className={classes.LogoContainer} logoClassName={classes.Logo} />
-            <Grid
-                container
-                item
-                alignItems='center'
-                xs={6}
-                className={classes.ComunicationContainer}
-            >
-                <Button variant='contained' color='primary'>
-                    Zaloguj się
-                </Button>
-                <Hidden xsDown>
-                    <Grid item className={classes.ContactContainer}>
-                        <Typography className={classes.ContactText}>
-                            Masz pytania? Zadzwoń
-                        </Typography>
-                        <Typography>728 886 453</Typography>
-                    </Grid>
-                </Hidden>
+        <Grid container item className={classes.NotificationContainer} component='nav'>
+            <Typography variant='h2' className={classes.NotificationTitle}>
+                Zgłoś szkodę
+            </Typography>
+            <Grid container item xs={12} spacing={2} className={classes.NotificationItems}>
+                {NotificationButtons.map(({ description, documents, title, icon }) => (
+                    <NavigationItem
+                        description={description}
+                        documents={documents}
+                        title={title}
+                        icon={icon}
+                        key={title}
+                    />
+                ))}
             </Grid>
         </Grid>
     );

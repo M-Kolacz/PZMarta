@@ -1,39 +1,22 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-    NavigationContainer: {
+    NotificationContainer: {
         marginTop: '10px',
+        backgroundColor: theme.palette.primary.main,
+        paddingBottom: '10px',
     },
-    LogoContainer: {
-        paddingLeft: '10px',
+    NotificationTitle: {
+        marginTop: '10px',
+        marginBottom: '20px',
+        textAlign: 'center',
+        color: theme.palette.brokenWhite!.main,
+        fontSize: '42px',
+        letterSpacing: '1px',
+        width: '100%',
     },
-    Logo: { maxWidth: '185px', width: '100%' },
-
-    ComunicationContainer: {
-        justifyContent: 'center',
-        [theme.breakpoints.up('sm')]: {
-            justifyContent: 'flex-end',
-        },
-    },
-    ButtonContainer: {
-        [theme.breakpoints.up('sm')]: {
-            paddingRight: '10px',
-        },
-    },
-    Button: {
-        color: 'white',
-    },
-    ContactContainer: {
-        textAlign: 'right',
-        [theme.breakpoints.up('sm')]: {
-            paddingLeft: '10px',
-            paddingRight: '10px',
-            borderLeft: '1px solid gray',
-        },
-    },
-    ContactText: {
-        fontSize: '14px',
-        color: 'gray',
+    NotificationItems: {
+        margin: '0',
     },
 }));
 

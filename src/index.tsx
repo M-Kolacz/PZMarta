@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MuiThemeProvider } from '@material-ui/core';
+import { BrowserRouter as Router } from 'react-router-dom';
 import theme from './theme/theme';
 
 import App from './App';
@@ -8,9 +9,11 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
     <React.StrictMode>
-        <MuiThemeProvider theme={theme}>
-            <App />
-        </MuiThemeProvider>
+        <Router>
+            <MuiThemeProvider theme={theme}>
+                <App />
+            </MuiThemeProvider>
+        </Router>
     </React.StrictMode>,
     document.getElementById('root'),
 );

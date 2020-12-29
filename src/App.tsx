@@ -1,8 +1,10 @@
 import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { CssBaseline, Grid } from '@material-ui/core';
 
-import Navigation from './components/Navigation/Navigation';
-import Notification from './components/Notification/Notification';
+import MainPage from './pages/MainPage';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
 import useStyles from './AppStyles';
 
@@ -11,8 +13,12 @@ function App() {
     return (
         <CssBaseline>
             <Grid container className={classes.AppContainer}>
-                <Navigation />
-                <Notification />
+                <Header />
+                <Switch>
+                    <Route exact path='/' component={MainPage} />
+                    <Redirect to='/' />
+                </Switch>
+                <Footer />
             </Grid>
         </CssBaseline>
     );
