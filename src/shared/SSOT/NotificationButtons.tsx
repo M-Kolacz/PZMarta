@@ -1,9 +1,8 @@
 import AirportShuttleIcon from '@material-ui/icons/AirportShuttle';
 import AccessibleIcon from '@material-ui/icons/Accessible';
 import HouseIcon from '@material-ui/icons/House';
-import { makeStyles } from '@material-ui/core/styles';
 
-const style = { fontSize: '38px' };
+const style = { fontSize: '38px', color: '#ef7239' };
 
 export const NotificationButtons = [
     {
@@ -17,12 +16,14 @@ export const NotificationButtons = [
             'numer konta bankowego',
         ],
         icon: <AirportShuttleIcon style={style} />,
+        link: '/szkoda-komunikacyjna',
     },
     {
         title: 'Szkoda majątkowa',
         description: 'w mieniu z polisy domu, mieszkania, OC w życiu prywatnym',
         documents: ['numer polisy', 'dokumenty związane z roszczeniem', 'dnumer konta bankowego'],
         icon: <HouseIcon style={style} />,
+        link: '/szkoda-majątkowa',
     },
     {
         title: 'NNW',
@@ -35,5 +36,6 @@ export const NotificationButtons = [
             'rachunki i faktury za leczenie, jeśli takie posiadasz',
         ],
         icon: <AccessibleIcon style={style} />,
+        link: '/szkoda-nnw',
     },
 ];

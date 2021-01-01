@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = () => {
             <Logo className={classes.Logo} />
 
             <Grid alignItems='center' className={classes.ComunicationContainer}>
-                <Button variant='contained' color='primary' className={classes.Button}>
+                <Button variant='contained' color='secondary' className={classes.Button}>
                     Zaloguj się
                 </Button>
 

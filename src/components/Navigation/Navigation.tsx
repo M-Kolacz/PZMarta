@@ -17,13 +17,14 @@ const Navigation: React.FC<NavigationProps> = () => {
                 Zgłoś szkodę
             </Typography>
             <Grid container item xs={12} spacing={2} className={classes.NotificationItems}>
-                {NotificationButtons.map(({ description, documents, title, icon }) => (
+                {NotificationButtons.map(({ description, documents, title, icon, link }) => (
                     <NavigationItem
                         description={description}
                         documents={documents}
                         title={title}
                         icon={icon}
                         key={title}
+                        link={link}
                     />
                 ))}
             </Grid>
