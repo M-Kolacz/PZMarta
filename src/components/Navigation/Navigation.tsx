@@ -1,33 +1,20 @@
 import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
 
-import { NotificationButtons } from '../../shared/SSOT/NotificationButtons';
-
-import NavigationItem from '../../shared/components/NavigationItem/NavigationItem';
-
 import useStyles from './NavigationStyles';
 
-export interface NavigationProps {}
+export interface NavigationProps {
+    navigationTitle: string;
+}
 
-const Navigation: React.FC<NavigationProps> = () => {
+const Navigation: React.FC<NavigationProps> = ({ navigationTitle, children }) => {
     const classes = useStyles();
     return (
         <Grid container item className={classes.NotificationContainer} component='nav'>
             <Typography variant='h2' className={classes.NotificationTitle}>
-                Zgłoś szkodę
+                {navigationTitle}
             </Typography>
-            <Grid container item xs={12} spacing={2} className={classes.NotificationItems}>
-                {NotificationButtons.map(({ description, documents, title, icon, link }) => (
-                    <NavigationItem
-                        description={description}
-                        documents={documents}
-                        title={title}
-                        icon={icon}
-                        key={title}
-                        link={link}
-                    />
-                ))}
-            </Grid>
+            {children}
         </Grid>
     );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Stepper as MUIStepper, Step, StepLabel } from '@material-ui/core';
+import { Stepper as MUIStepper, Step, StepLabel } from '@material-ui/core';
 
 export interface StepperProps {
     activeStep: number;

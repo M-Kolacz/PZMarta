@@ -15,9 +15,6 @@ const useStyles = makeStyles((theme) => ({
         letterSpacing: '1px',
         width: '100%',
     },
-    NotificationItems: {
-        margin: '0',
-    },
 }));
 
 export default useStyles;

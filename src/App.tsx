@@ -5,9 +5,9 @@ import { CssBaseline, Grid } from '@material-ui/core';
 import { mainPath, comumunicationDamagePath } from './shared/SSOT/paths';
 
 import MainPage from './pages/MainPage';
-import CommunicationForm from './pages/CommunicationForm';
-import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
+import CommunicationPage from './pages/CommunicationPage';
 
 import useStyles from './AppStyles';
 
@@ -19,7 +19,7 @@ function App() {
                 <Header />
                 <Switch>
                     <Route exact path={mainPath} component={MainPage} />
-                    <Route path={comumunicationDamagePath} component={CommunicationForm} />
+                    <Route path={comumunicationDamagePath} component={CommunicationPage} />
 
                     <Redirect to={mainPath} />
                 </Switch>

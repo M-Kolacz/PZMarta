@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
     Button: {
         color: theme.palette.brokenWhite?.main,
     },
+    NotificationItems: {
+        margin: '0',
+    },
 }));
 
 export default useStyles;
