@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Hidden } from '@material-ui/core';
 
 import Stepper from '../shared/components/Stepper/Stepper';
 import Navigation from '../components/Navigation/Navigation';
@@ -22,7 +23,9 @@ const CommunicationPage: React.FC<CommunicationPageProps> = () => {
     return (
         <>
             <Navigation navigationTitle='Formularz zgłoszeniowy' />
-            <Stepper activeStep={activeStep} steps={steps} />
+            <Hidden xsDown>
+                <Stepper activeStep={activeStep} steps={steps} />
+            </Hidden>
             <CommunicationForm handleNext={handleNext} handleBack={handleBack} />
         </>
     );
