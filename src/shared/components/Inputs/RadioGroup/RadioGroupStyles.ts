@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
     LabelTitle: {
         color: theme.palette.primary.main,
     },
+    FormControlLabel: {
+        width: '120px',
+    },
 }));
 
 export default useStyles;
