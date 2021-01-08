@@ -42,7 +42,7 @@ export const FormikStepper = ({
             }}
         >
             <FormikForm autoComplete='off' style={{ width: '96%', margin: '0 auto' }}>
-                <Grid container spacing={2} justify='space-evenly'>
+                <Grid container spacing={2}>
                     {currentChild}
                     <Grid item xs={12}>
                         <Button

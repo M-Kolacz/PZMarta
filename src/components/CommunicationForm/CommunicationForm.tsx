@@ -7,6 +7,8 @@ import SectionForm from '../../shared/components/SectionForm/SectionForm';
 import { FormikStepper, FormikStep } from '../../shared/components/Form/Form';
 import { DatePicker, TimePicker, RadioGroup } from '../../shared/components/Inputs/index';
 
+import FirstStep from './FirstStep';
+
 import { object, string } from 'yup';
 
 export interface FormProps {
@@ -17,18 +19,12 @@ export interface FormProps {
 const Form: React.FC<FormProps> = ({ handleBack, handleNext }) => {
     return (
         <FormikStepper
-            initialValues={{ date: new Date(), time: new Date(), activity: '' }}
+            initialValues={{ date: new Date(), time: new Date(), activity: '', owner: '' }}
             onSubmit={() => {}}
             handleBack={handleBack}
             handleNext={handleNext}
         >
-            <FormikStep>
-                <SectionForm title='Data zdarzenia' />
-                <DatePicker name='date' label='Date' disableFuture xs={12} sm={6} />
-                <TimePicker name='time' label='Time' xs={12} sm={6} />
-                <SectionForm title='Przedmiot szkody' />
-                <RadioGroup />
-            </FormikStep>
+            <FirstStep />
             <FormikStep
                 validationSchema={object({
                     secondName: string().required('Wymagany'),
