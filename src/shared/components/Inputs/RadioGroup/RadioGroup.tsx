@@ -22,14 +22,14 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     xl,
     name,
     id,
-    labelTitle,
+    label,
     controls,
 }) => {
     const classes = useStyles();
     return (
         <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
             <Field component={MUIRadioGroup} name={name} className={classes.RadioGroup} id={id}>
-                <Label labelTitle={labelTitle} id={id} />
+                <Label label={label} id={id} />
                 {controls.map((control) => (
                     <FormControlLabel
                         className={classes.FormControlLabel}

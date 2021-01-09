@@ -23,14 +23,14 @@ export const TextField: React.FC<TextFieldProps> = ({
     md,
     lg,
     xl,
-    labelTitle,
+    label,
     id,
     ...props
 }) => {
     const classes = useStyles();
     return (
         <>
-            <Label labelTitle={labelTitle} id={id} />
+            <Label label={label} id={id} />
             <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
                 <Field component={MUITextField} className={classes.TextField} {...props} />
             </Grid>

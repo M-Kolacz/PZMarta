@@ -21,13 +21,13 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
     lg,
     xl,
     id,
-    labelTitle,
+    label,
     name,
     options,
 }) => {
     return (
         <>
-            <Label labelTitle={labelTitle} id={id} />
+            <Label label={label} id={id} />
             <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
                 <Field
                     name={name}
