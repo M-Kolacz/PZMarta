@@ -82,3 +82,5 @@ export const fieldsData = {
         label: 'Nie znam numeru polisy',
     },
 };
+
+export const validationSchema = {};

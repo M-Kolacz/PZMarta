@@ -12,8 +12,9 @@ import useStyles from './CheckboxWithLabelStyles';
 
 export interface CheckboxWithLabelProps
     extends GridProps,
-        Omit<MUICheckboxWithLabelProps, 'field' | 'form' | 'meta'> {
+        Omit<MUICheckboxWithLabelProps, 'field' | 'form' | 'meta' | 'Label'> {
     name: string;
+    label: string;
 }
 
 export const CheckboxWithLabel: React.FC<CheckboxWithLabelProps> = ({
@@ -23,12 +24,19 @@ export const CheckboxWithLabel: React.FC<CheckboxWithLabelProps> = ({
     lg,
     xl,
     name,
+    label,
     ...props
 }) => {
     const classes = useStyles();
     return (
         <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl} className={classes.Checkbox}>
-            <Field component={MUICheckboxWithLabel} type='checkbox' name={name} {...props} />
+            <Field
+                component={MUICheckboxWithLabel}
+                type='checkbox'
+                name={name}
+                Label={{ label }}
+                {...props}
+            />
         </Grid>
     );
 };

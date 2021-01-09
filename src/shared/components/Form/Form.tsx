@@ -42,19 +42,24 @@ export const FormikStepper = ({
             }}
         >
             <FormikForm autoComplete='off' style={{ width: '94%', margin: '0 auto' }}>
-                <Grid container spacing={1}>
+                <Grid container spacing={2}>
                     {currentChild}
-                    <Grid item xs={12}>
+                    <Grid item xs={12} style={{ textAlign: 'right' }}>
                         <Button
                             onClick={() => {
                                 setStep((s) => s - 1);
                                 handleBack();
                             }}
                             disabled={step === 0}
+                            variant='contained'
+                            style={{ marginRight: '10px' }}
+                            color='secondary'
                         >
                             Back
                         </Button>
-                        <Button type='submit'>{isLastStep() ? 'Submit' : 'Next'}</Button>
+                        <Button type='submit' variant='contained' color='secondary'>
+                            {isLastStep() ? 'Submit' : 'Next'}
+                        </Button>
                     </Grid>
                 </Grid>
             </FormikForm>
