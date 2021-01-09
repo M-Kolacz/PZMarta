@@ -1,13 +1,11 @@
 import React from 'react';
 import { Field } from 'formik';
-
 import { TextField } from 'formik-material-ui';
 
-import SectionForm from '../../shared/components/SectionForm/SectionForm';
-import { FormikStepper, FormikStep } from '../../shared/components/Form/Form';
-import { DatePicker, TimePicker, RadioGroup } from '../../shared/components/Inputs/index';
+import { firstStepInitialValues } from './Steps/FirstStep/data';
 
-import FirstStep from './FirstStep';
+import FirstStep from './Steps/FirstStep/FirstStep';
+import { FormikStepper, FormikStep } from '../../shared/components/Form/Form';
 
 import { object, string } from 'yup';
 
@@ -19,7 +17,9 @@ export interface FormProps {
 const Form: React.FC<FormProps> = ({ handleBack, handleNext }) => {
     return (
         <FormikStepper
-            initialValues={{ date: new Date(), time: new Date(), activity: '', owner: '' }}
+            initialValues={{
+                ...firstStepInitialValues,
+            }}
             onSubmit={() => {}}
             handleBack={handleBack}
             handleNext={handleNext}
