@@ -4,7 +4,13 @@ import { subjectDamage, policyOwner } from '../../shared/SSOT/forms/options';
 
 import { FormikStep } from '../../shared/components/Form/Form';
 import SectionForm from '../../shared/components/SectionForm/SectionForm';
-import { DatePicker, TimePicker, RadioGroup, Autocomplete } from '../../shared/components/Inputs';
+import {
+    DatePicker,
+    TimePicker,
+    RadioGroup,
+    Autocomplete,
+    TextField,
+} from '../../shared/components/Inputs';
 
 export interface FirstStepProps {}
 
@@ -42,6 +48,14 @@ const FirstStep: React.FC<FirstStepProps> = () => {
                 md={6}
             />
             <SectionForm>Polisa</SectionForm>
+            <TextField
+                name='name'
+                variant='outlined'
+                xs={12}
+                md={6}
+                labelTitle='Podaj numer polisy'
+                id='polisa'
+            />
         </FormikStep>
     );
 };
