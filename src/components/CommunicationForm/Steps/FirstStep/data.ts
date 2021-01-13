@@ -1,3 +1,9 @@
+import * as Yup from 'yup';
+
+import { dateValidation, stringValidation } from '../../../../shared/SSOT/schemas/yup';
+
+import { Damage, PolicyOwner, Owner } from './conditionals';
+
 const DATE = 'date';
 const TIME = 'time';
 const DAMAGE = 'damage';
@@ -16,7 +22,7 @@ export const firstStepInitialValues = {
     [DATE]: null,
     [TIME]: null,
     [DAMAGE]: '',
-    [PERSON_DEATH]: null,
+    [PERSON_DEATH]: '',
     [OWNER]: '',
     [REASON]: '',
     [POLICY]: '',
@@ -27,6 +33,22 @@ export const firstStepInitialValues = {
     [PERSONAL_IDENTITY]: '',
     [REGON]: '',
 };
+
+export interface FirstStepForm {
+    [DATE]: Date | null;
+    [TIME]: Date | null;
+    [DAMAGE]: Damage;
+    [PERSON_DEATH]: string;
+    [OWNER]: Owner;
+    [REASON]: string;
+    [POLICY]: PolicyOwner;
+    [KNOWN_POLICY]: boolean;
+    [REGISTRATION_NUMBER]: string;
+    [VEHICLE_LEASING]: string;
+    [POLICY_OWNER]: string;
+    [PERSONAL_IDENTITY]: string;
+    [REGON]: string;
+}
 
 export const fieldsData = {
     [DATE]: {
@@ -83,4 +105,9 @@ export const fieldsData = {
     },
 };
 
-export const validationSchema = {};
+export const validationSchema = Yup.object({
+    [DATE]: dateValidation,
+    [TIME]: dateValidation,
+    [DAMAGE]: stringValidation,
+    [REASON]: stringValidation,
+});
