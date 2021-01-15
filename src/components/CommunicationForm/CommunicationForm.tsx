@@ -2,7 +2,7 @@ import React from 'react';
 import { Field } from 'formik';
 import { TextField } from 'formik-material-ui';
 
-import { firstStepInitialValues } from './Steps/FirstStep/data';
+import { firstStepInitialValues, validationSchema } from './Steps/FirstStep/data';
 
 import FirstStep from './Steps/FirstStep/FirstStep';
 import { FormikStepper, FormikStep } from '../../shared/components/Form/Form';
@@ -24,7 +24,7 @@ const Form: React.FC<FormProps> = ({ handleBack, handleNext }) => {
             handleBack={handleBack}
             handleNext={handleNext}
         >
-            <FirstStep />
+            <FirstStep validationSchema={validationSchema} />
             <FormikStep
                 validationSchema={object({
                     secondName: string().required('Wymagany'),

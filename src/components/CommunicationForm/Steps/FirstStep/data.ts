@@ -1,8 +1,23 @@
 import * as Yup from 'yup';
 
-import { dateValidation, stringValidation } from '../../../../shared/SSOT/schemas/yup';
+import {
+    dateValidation,
+    stringValidation,
+    objectValidation,
+    booleanValidation,
+} from '../../../../shared/SSOT/schemas/yup';
 
-import { Damage, PolicyOwner, Owner } from './conditionals';
+import {
+    Damage,
+    PolicyOwner,
+    Owner,
+    conditionalPersonDeath,
+    conditionalRegistrationNumber,
+    conditionalVehicleLeasing,
+    conditionalPolicyOWner,
+    conditionalPersonalIdentity,
+    conditionalRegon,
+} from './conditionals';
 
 const DATE = 'date';
 const TIME = 'time';
@@ -109,5 +124,32 @@ export const validationSchema = Yup.object({
     [DATE]: dateValidation,
     [TIME]: dateValidation,
     [DAMAGE]: stringValidation,
-    [REASON]: stringValidation,
+    [PERSON_DEATH]: Yup.mixed().when(DAMAGE, {
+        is: conditionalPersonDeath,
+        then: stringValidation,
+    }),
+    [OWNER]: stringValidation,
+    [REASON]: objectValidation,
+    [POLICY]: stringValidation,
+    [KNOWN_POLICY]: booleanValidation,
+    [REGISTRATION_NUMBER]: Yup.mixed().when([DAMAGE, OWNER], {
+        is: conditionalRegistrationNumber,
+        then: stringValidation,
+    }),
+    [VEHICLE_LEASING]: Yup.mixed().when([DAMAGE, OWNER, POLICY_OWNER], {
+        is: conditionalVehicleLeasing,
+        then: stringValidation,
+    }),
+    [POLICY_OWNER]: Yup.mixed().when([DAMAGE, OWNER], {
+        is: conditionalPolicyOWner,
+        then: stringValidation,
+    }),
+    [PERSONAL_IDENTITY]: Yup.mixed().when([DAMAGE, OWNER, POLICY_OWNER], {
+        is: conditionalPersonalIdentity,
+        then: stringValidation,
+    }),
+    [REGON]: Yup.mixed().when([POLICY_OWNER], {
+        is: conditionalRegon,
+        then: stringValidation,
+    }),
 });

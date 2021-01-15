@@ -60,21 +60,3 @@ export const personConfessorOptions = [
     { value: 'companyDamage', label: 'Obrażenia powstały z winy firmy lub jej pracownika' },
     { value: 'animalDamage', label: 'Obrażenia spowodowało zwierzę domowe' },
 ];
-
-// export const conditionalReasonOptions = ({ damage, owner: }) => {
-//     if (damage === 'car' && owner === 'personal') {
-//         return vehicleOwnOptions;
-//     } else if (damage === 'car' && owner === 'confessor') {
-//         return vehicleConfessorOptions;
-//     } else if (damage === 'assets' && owner === 'personal') {
-//         return assetsOwnOptions;
-//     } else if (damage === 'assets' && owner === 'confessor') {
-//         return assetsConfessorOptions;
-//     } else if (damage === 'person' && owner === 'personal') {
-//         return personOwnOptions;
-//     } else if (damage === 'person' && owner === 'confessor') {
-//         return personConfessorOptions;
-//     } else {
-//         return [];
-//     }
-// };
