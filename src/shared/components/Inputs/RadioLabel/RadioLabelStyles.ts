@@ -13,10 +13,10 @@ const useStyles = makeStyles((theme) => ({
     },
     HelperText: {
         position: 'absolute',
-        left: '13px',
-        bottom: '0px',
-        color: 'red',
+        bottom: '-15px',
+        left: '5px',
         fontSize: '13px',
+        color: 'red',
     },
 }));
 

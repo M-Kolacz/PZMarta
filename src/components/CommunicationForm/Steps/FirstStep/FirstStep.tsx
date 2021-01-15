@@ -51,7 +51,7 @@ const FirstStep: React.FC<FirstStepProps> = () => {
     const [policyNaturalPerson, setPolicyNaturalPerson] = useShowField('naturalPerson');
     const [policyComapny, setPolicyCompany] = useShowField('company');
 
-    console.log(errors.damage);
+    console.log(errors);
 
     return (
         <FormikStep>
@@ -62,6 +62,8 @@ const FirstStep: React.FC<FirstStepProps> = () => {
             <RadioGroup
                 {...damage}
                 controls={damageOptions}
+                error={errors.damage}
+                touched={touched.damage}
                 id={damage.name}
                 xs={12}
                 onClick={(event: Event) => {
@@ -75,6 +77,8 @@ const FirstStep: React.FC<FirstStepProps> = () => {
             {damagePerson && (
                 <RadioGroup
                     {...personDeath}
+                    error={errors.personDeath}
+                    touched={touched.personDeath}
                     controls={personDeathOptions}
                     id={personDeath.name}
                     xs={12}
@@ -85,10 +89,12 @@ const FirstStep: React.FC<FirstStepProps> = () => {
             <RadioGroup
                 {...owner}
                 controls={ownerOptions}
+                error={errors.owner}
+                touched={touched.owner}
                 id='owner'
                 xs={12}
                 onClick={(event: Event) => {
-                    setFieldValue(reason.name, []);
+                    setFieldValue(reason.name, {});
                     setOwnerPersonal(event);
                 }}
             />
@@ -118,6 +124,8 @@ const FirstStep: React.FC<FirstStepProps> = () => {
             {((damageAssets && ownerPersonal) || (ownerPersonal && damageCar)) && (
                 <RadioGroup
                     {...policyOwner}
+                    error={errors.policyOwner}
+                    touched={touched.policyOwner}
                     controls={policyOwnerOptions}
                     id='owner'
                     xs={12}
@@ -129,7 +137,14 @@ const FirstStep: React.FC<FirstStepProps> = () => {
             )}
 
             {!damageAssets && policyComapny && (
-                <RadioGroup {...vehicleLeasing} controls={personDeathOptions} id='owner' xs={12} />
+                <RadioGroup
+                    {...vehicleLeasing}
+                    controls={personDeathOptions}
+                    error={errors.vehicleLeasing}
+                    touched={touched.vehicleLeasing}
+                    id='owner'
+                    xs={12}
+                />
             )}
             {policyComapny && <TextField {...regon} id='1' xs={12} md={5} variant='outlined' />}
 

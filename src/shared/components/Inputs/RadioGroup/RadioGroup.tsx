@@ -4,14 +4,18 @@ import { Field } from 'formik';
 import { FormControlLabel, Grid, Radio } from '@material-ui/core';
 
 import { GridProps } from '../../../interfaces/MaterialUI';
-import Label, { LabelProps } from '../Label/Label';
+import RadioLabel, { RadioLabelProps } from '../RadioLabel/RadioLabel';
+import { Event } from '../../../types/event';
 
 import useStyles from './RadioGroupStyles';
 
-export interface RadioGroupProps extends LabelProps, GridProps {
+export interface RadioGroupProps extends RadioLabelProps, GridProps {
     name: string;
     id: string;
     controls: { value: string; label: string }[];
+    onClick?: (event: Event) => void;
+    error: string | undefined;
+    touched: boolean | undefined;
 }
 
 export const RadioGroup: React.FC<RadioGroupProps> = ({
@@ -24,17 +28,32 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     id,
     label,
     controls,
+    onClick,
+    error,
+    touched,
 }) => {
     const classes = useStyles();
+    console.log(error, touched);
     return (
         <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
-            <Field component={MUIRadioGroup} name={name} className={classes.RadioGroup} id={id}>
-                <Label label={label} id={id} />
+            <Field
+                component={MUIRadioGroup}
+                name={name}
+                className={classes.RadioGroup}
+                id={id}
+                onClick={(event: Event) => {
+                    if (onClick) {
+                        onClick(event);
+                    }
+                }}
+            >
+                <RadioLabel label={label} id={id} error={error} touched={touched} />
                 {controls.map((control) => (
                     <FormControlLabel
                         className={classes.FormControlLabel}
                         control={<Radio />}
                         {...control}
+                        key={control.value}
                     />
                 ))}
             </Field>

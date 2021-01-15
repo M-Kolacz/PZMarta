@@ -33,7 +33,10 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
                     name={name}
                     component={MUIAutocomplete}
                     options={options}
-                    getOptionLabel={(option: any) => option.title}
+                    getOptionLabel={(option: { title: string }) => {
+                        if (!option.title) return '';
+                        else return option.title;
+                    }}
                     style={{ width: '100%' }}
                     renderInput={(params: AutocompleteRenderInputParams) => (
                         <TextField {...params} label='Wybierz' variant='outlined' />
