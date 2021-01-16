@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FormikErrors, FormikTouched } from 'formik';
 import { Field } from 'formik';
 import {
     Autocomplete as MUIAutocomplete,
@@ -13,6 +14,8 @@ import Label, { LabelProps } from '../Label/Label';
 export interface AutocompleteDynamicProps extends LabelProps, GridProps {
     name: string;
     conditionalOptions: any;
+    error: string | undefined;
+    touched: boolean | undefined;
 }
 
 function sleep(delay = 0) {
@@ -31,6 +34,8 @@ export const AutocompleteDynamic: React.FC<AutocompleteDynamicProps> = ({
     label,
     name,
     conditionalOptions,
+    error,
+    touched,
 }) => {
     const [open, setOpen] = useState(false);
     const [options, setOptions] = useState([] as { title: string }[]);
@@ -65,6 +70,7 @@ export const AutocompleteDynamic: React.FC<AutocompleteDynamicProps> = ({
             <Label label={label} id={id} />
             <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
                 <Field
+                    id={name}
                     name={name}
                     component={MUIAutocomplete}
                     options={options}
@@ -83,7 +89,15 @@ export const AutocompleteDynamic: React.FC<AutocompleteDynamicProps> = ({
                     getOptionSelected={(option: any, value: any) => option.name === value.name}
                     loading={loading}
                     renderInput={(params: AutocompleteRenderInputParams) => (
-                        <TextField {...params} label='Wybierz' variant='outlined' />
+                        <TextField
+                            {...params}
+                            label='Wybierz'
+                            variant='outlined'
+                            id={name}
+                            name={name}
+                            error={touched && !!error}
+                            // helperText={error}
+                        />
                     )}
                 />
             </Grid>

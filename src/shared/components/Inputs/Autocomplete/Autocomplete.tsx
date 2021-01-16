@@ -12,6 +12,8 @@ import Label, { LabelProps } from '../Label/Label';
 export interface AutocompleteProps extends LabelProps, GridProps {
     name: string;
     options: { title: string }[];
+    error: any;
+    touched: any;
 }
 
 export const Autocomplete: React.FC<AutocompleteProps> = ({
@@ -24,6 +26,8 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
     label,
     name,
     options,
+    error,
+    touched,
 }) => {
     return (
         <>

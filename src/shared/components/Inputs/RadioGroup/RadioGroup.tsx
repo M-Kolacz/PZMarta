@@ -33,7 +33,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     touched,
 }) => {
     const classes = useStyles();
-    console.log(error, touched);
+
     return (
         <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
             <Field

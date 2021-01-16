@@ -39,7 +39,7 @@ export const firstStepInitialValues = {
     [DAMAGE]: '',
     [PERSON_DEATH]: '',
     [OWNER]: '',
-    [REASON]: '',
+    [REASON]: null,
     [POLICY]: '',
     [KNOWN_POLICY]: false,
     [REGISTRATION_NUMBER]: '',
@@ -55,7 +55,7 @@ export interface FirstStepForm {
     [DAMAGE]: Damage;
     [PERSON_DEATH]: string;
     [OWNER]: Owner;
-    [REASON]: string;
+    [REASON]: { value: string } | null;
     [POLICY]: PolicyOwner;
     [KNOWN_POLICY]: boolean;
     [REGISTRATION_NUMBER]: string;

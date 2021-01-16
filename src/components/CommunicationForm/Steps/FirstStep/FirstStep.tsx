@@ -51,8 +51,6 @@ const FirstStep: React.FC<FirstStepProps> = () => {
     const [policyNaturalPerson, setPolicyNaturalPerson] = useShowField('naturalPerson');
     const [policyComapny, setPolicyCompany] = useShowField('company');
 
-    console.log(errors);
-
     return (
         <FormikStep>
             <SectionForm>Data zdarzenia</SectionForm>
@@ -67,7 +65,7 @@ const FirstStep: React.FC<FirstStepProps> = () => {
                 id={damage.name}
                 xs={12}
                 onClick={(event: Event) => {
-                    setFieldValue(reason.name, {});
+                    setFieldValue(reason.name, null);
                     setDamagePerson(event);
                     setDamageCar(event);
                     setDamageAssets(event);
@@ -94,13 +92,15 @@ const FirstStep: React.FC<FirstStepProps> = () => {
                 id='owner'
                 xs={12}
                 onClick={(event: Event) => {
-                    setFieldValue(reason.name, {});
+                    setFieldValue(reason.name, null);
                     setOwnerPersonal(event);
                 }}
             />
             <SectionForm>Przyczyna powstania szkody</SectionForm>
             <AutocompleteDynamic
                 {...reason}
+                error={errors.reason}
+                touched={touched.reason}
                 id='situation'
                 xs={12}
                 md={5}
