@@ -17,7 +17,7 @@ export interface DatePickerProps
 export const DatePicker: React.FC<DatePickerProps> = ({ xs, sm, md, lg, xl, ...props }) => {
     const classes = useStyles();
     return (
-        <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
+        <Grid item xs={xs || 12} sm={sm || 6} md={md} lg={lg} xl={xl}>
             <Field component={KeyboardDatePicker} className={classes.DataPicker} {...props} />
         </Grid>
     );

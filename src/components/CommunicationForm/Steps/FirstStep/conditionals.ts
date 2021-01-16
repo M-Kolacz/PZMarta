@@ -1,4 +1,3 @@
-import { AnyMessageParams } from 'yup/lib/types';
 import {
     vehicleOwnOptions,
     vehicleConfessorOptions,

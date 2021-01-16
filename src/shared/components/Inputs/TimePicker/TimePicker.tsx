@@ -17,7 +17,7 @@ export interface TimePickerProps
 export const TimePicker: React.FC<TimePickerProps> = ({ xs, sm, md, lg, xl, ...props }) => {
     const classes = useStyles();
     return (
-        <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
+        <Grid item xs={xs || 12} sm={sm || 6} md={md} lg={lg} xl={xl}>
             <Field component={KeyboardTimePicker} className={classes.TimePicker} {...props} />
         </Grid>
     );

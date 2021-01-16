@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { FormikErrors, FormikTouched } from 'formik';
 import { Field } from 'formik';
 import {
     Autocomplete as MUIAutocomplete,
     AutocompleteRenderInputParams,
 } from 'formik-material-ui-lab';
 import { Grid, TextField } from '@material-ui/core';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { GridProps } from '../../../interfaces/MaterialUI';
 import Label, { LabelProps } from '../Label/Label';
@@ -16,12 +14,6 @@ export interface AutocompleteDynamicProps extends LabelProps, GridProps {
     conditionalOptions: any;
     error: string | undefined;
     touched: boolean | undefined;
-}
-
-function sleep(delay = 0) {
-    return new Promise((resolve) => {
-        setTimeout(resolve, delay);
-    });
 }
 
 export const AutocompleteDynamic: React.FC<AutocompleteDynamicProps> = ({
@@ -67,8 +59,8 @@ export const AutocompleteDynamic: React.FC<AutocompleteDynamicProps> = ({
 
     return (
         <>
-            <Label label={label} id={id} />
-            <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
+            <Label label={label} id={id} error={error} />
+            <Grid item xs={xs || 12} sm={sm} md={md || 5} lg={lg} xl={xl}>
                 <Field
                     id={name}
                     name={name}

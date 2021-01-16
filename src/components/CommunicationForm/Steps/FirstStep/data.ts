@@ -69,54 +69,67 @@ export const fieldsData = {
     [DATE]: {
         name: DATE,
         label: 'Data zdarzenia',
+        id: DATE,
     },
     [TIME]: {
         name: TIME,
         label: 'Czas zdarzenia',
+        id: TIME,
     },
     [DAMAGE]: {
         name: DAMAGE,
         label: 'Czego dotyczy zgłoszenie?',
+        id: DAMAGE,
     },
     [PERSON_DEATH]: {
         name: PERSON_DEATH,
         label: 'Czy na skutek zdarzenia nastąpiła śmierć poszkodowanego?',
+        id: PERSON_DEATH,
     },
     [OWNER]: {
         name: OWNER,
         label: 'Z czyjego ubezpieczenia zgłaszasz szkodę?',
+        id: OWNER,
     },
     [REASON]: {
         name: REASON,
         label: 'Wybierz przyczynę najlepiej pasującą do zdarzenia',
+        id: REASON,
     },
     [POLICY]: {
         name: POLICY,
         label: 'Podaj numer polisy',
+        id: POLICY,
     },
     [REGISTRATION_NUMBER]: {
         name: REGISTRATION_NUMBER,
         label: 'Podaj numer rejestracyjny pojazdu',
+        id: REGISTRATION_NUMBER,
     },
     [POLICY_OWNER]: {
         name: POLICY_OWNER,
         label: 'Właścicielem polisy jest',
+        id: POLICY_OWNER,
     },
     [VEHICLE_LEASING]: {
         name: VEHICLE_LEASING,
         label: 'Czy pojazd poszkodowanego jest przedmiotem leasingu?',
+        id: VEHICLE_LEASING,
     },
     [REGON]: {
         name: REGON,
         label: 'REGON',
+        id: REGON,
     },
     [PERSONAL_IDENTITY]: {
         name: PERSONAL_IDENTITY,
         label: 'Pesel poszkodowanego',
+        id: PERSONAL_IDENTITY,
     },
     [KNOWN_POLICY]: {
         name: KNOWN_POLICY,
         label: 'Nie znam numeru polisy',
+        id: KNOWN_POLICY,
     },
 };
 

@@ -35,7 +35,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     const classes = useStyles();
 
     return (
-        <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
+        <Grid item xs={xs || 12} sm={sm} md={md} lg={lg} xl={xl}>
             <Field
                 component={MUIRadioGroup}
                 name={name}

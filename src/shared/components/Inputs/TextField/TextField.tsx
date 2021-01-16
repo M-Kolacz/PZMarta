@@ -15,6 +15,7 @@ export interface TextFieldProps
         Omit<MUITextFieldProps, 'field' | 'form' | 'meta' | 'onChange' | 'id'> {
     name: string;
     label?: string;
+    error: string | undefined;
 }
 
 export const TextField: React.FC<TextFieldProps> = ({
@@ -25,14 +26,20 @@ export const TextField: React.FC<TextFieldProps> = ({
     xl,
     label,
     id,
+    error,
     ...props
 }) => {
     const classes = useStyles();
     return (
         <>
-            <Label label={label} id={id} />
-            <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
-                <Field component={MUITextField} className={classes.TextField} {...props} />
+            <Label label={label} id={id} error={error} />
+            <Grid item xs={xs || 12} sm={sm} md={md || 5} lg={lg} xl={xl}>
+                <Field
+                    component={MUITextField}
+                    className={classes.TextField}
+                    variant='outlined'
+                    {...props}
+                />
             </Grid>
         </>
     );
