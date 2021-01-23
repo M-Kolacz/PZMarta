@@ -56,11 +56,11 @@ export interface FirstStepForm {
     [PERSON_DEATH]: string;
     [OWNER]: Owner;
     [REASON]: { value: string } | null;
-    [POLICY]: PolicyOwner;
+    [POLICY]: string;
     [KNOWN_POLICY]: boolean;
     [REGISTRATION_NUMBER]: string;
     [VEHICLE_LEASING]: string;
-    [POLICY_OWNER]: string;
+    [POLICY_OWNER]: PolicyOwner;
     [PERSONAL_IDENTITY]: string;
     [REGON]: string;
 }
@@ -133,7 +133,7 @@ export const fieldsData = {
     },
 };
 
-export const validationSchema = Yup.object({
+export const firstStepValidationSchema = Yup.object({
     [DATE]: dateValidation,
     [TIME]: dateValidation,
     [DAMAGE]: stringValidation,

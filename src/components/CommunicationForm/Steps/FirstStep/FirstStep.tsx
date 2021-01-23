@@ -2,8 +2,15 @@ import React from 'react';
 import { FormikConfig, FormikValues, useFormikContext } from 'formik';
 
 import { fieldsData, FirstStepForm } from './data';
-import { conditionalReasonOptions } from './conditionals';
-import { useShowField } from '../../../../shared/hooks/useShowField';
+import {
+    conditionalReasonOptions,
+    conditionalPersonDeath,
+    conditionalPersonalIdentity,
+    conditionalPolicyOWner,
+    conditionalRegistrationNumber,
+    conditionalRegon,
+    conditionalVehicleLeasing,
+} from './conditionals';
 import { policyOwnerOptions, damageOptions, personDeathOptions, ownerOptions } from './options';
 
 import { Event } from '../../../../shared/types/event';
@@ -40,15 +47,6 @@ const {
 const FirstStep: React.FC<FirstStepProps> = () => {
     const { values, errors, touched, setFieldValue } = useFormikContext<FirstStepForm>();
 
-    const [damagePerson, setDamagePerson] = useShowField('person');
-    const [damageAssets, setDamageAssets] = useShowField('assets');
-    const [damageCar, setDamageCar] = useShowField('car');
-
-    const [ownerPersonal, setOwnerPersonal] = useShowField('personal');
-
-    const [policyNaturalPerson, setPolicyNaturalPerson] = useShowField('naturalPerson');
-    const [policyComapny, setPolicyCompany] = useShowField('company');
-
     return (
         <FormikStep>
             <SectionForm>Data zdarzenia</SectionForm>
@@ -62,13 +60,10 @@ const FirstStep: React.FC<FirstStepProps> = () => {
                 touched={touched.damage}
                 onClick={(event: Event) => {
                     setFieldValue(reason.name, null);
-                    setDamagePerson(event);
-                    setDamageCar(event);
-                    setDamageAssets(event);
                 }}
             />
 
-            {damagePerson && (
+            {conditionalPersonDeath(values.damage) && (
                 <RadioGroup
                     {...personDeath}
                     error={errors.personDeath}
@@ -85,7 +80,6 @@ const FirstStep: React.FC<FirstStepProps> = () => {
                 touched={touched.owner}
                 onClick={(event: Event) => {
                     setFieldValue(reason.name, null);
-                    setOwnerPersonal(event);
                 }}
             />
             <SectionForm>Przyczyna powstania szkody</SectionForm>
@@ -96,27 +90,32 @@ const FirstStep: React.FC<FirstStepProps> = () => {
                 conditionalOptions={() => conditionalReasonOptions(values.damage, values.owner)}
             />
             <SectionForm>Polisa</SectionForm>
-            <TextField {...policy} disabled={values.knownPolicy} error={errors.policy} />
+            <TextField
+                {...policy}
+                disabled={values.knownPolicy}
+                error={errors.policy}
+                touched={touched.policy}
+            />
             <CheckboxWithLabel {...knownPolicy} md={3} />
 
-            {ownerPersonal && damageCar && (
-                <TextField {...registrationNumber} error={errors.registrationNumber} />
+            {conditionalRegistrationNumber(values.damage, values.owner) && (
+                <TextField
+                    {...registrationNumber}
+                    error={errors.registrationNumber}
+                    touched={touched.registrationNumber}
+                />
             )}
 
-            {((damageAssets && ownerPersonal) || (ownerPersonal && damageCar)) && (
+            {conditionalPolicyOWner(values.damage, values.owner) && (
                 <RadioGroup
                     {...policyOwner}
                     error={errors.policyOwner}
                     touched={touched.policyOwner}
                     controls={policyOwnerOptions}
-                    onClick={(event: Event) => {
-                        setPolicyNaturalPerson(event);
-                        setPolicyCompany(event);
-                    }}
                 />
             )}
 
-            {!damageAssets && policyComapny && (
+            {conditionalVehicleLeasing(values.damage, values.owner, values.policyOwner) && (
                 <RadioGroup
                     {...vehicleLeasing}
                     controls={personDeathOptions}
@@ -124,10 +123,16 @@ const FirstStep: React.FC<FirstStepProps> = () => {
                     touched={touched.vehicleLeasing}
                 />
             )}
-            {policyComapny && <TextField {...regon} error={errors.regon} />}
+            {conditionalRegon(values.policyOwner) && (
+                <TextField {...regon} error={errors.regon} touched={touched.regon} />
+            )}
 
-            {((damagePerson && ownerPersonal) || policyNaturalPerson) && (
-                <TextField {...personalIdentity} error={errors.personalIdentity} />
+            {conditionalPersonalIdentity(values.damage, values.owner, values.policyOwner) && (
+                <TextField
+                    {...personalIdentity}
+                    error={errors.personalIdentity}
+                    touched={touched.personalIdentity}
+                />
             )}
         </FormikStep>
     );
