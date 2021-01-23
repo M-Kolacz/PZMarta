@@ -6,14 +6,16 @@ import {
     CheckboxWithLabelProps as MUICheckboxWithLabelProps,
 } from 'formik-material-ui';
 
+import { Event } from '../../../types/event';
 import { GridProps } from '../../../interfaces/MaterialUI';
 
 import useStyles from './CheckboxWithLabelStyles';
 
 export interface CheckboxWithLabelProps
     extends GridProps,
-        Omit<MUICheckboxWithLabelProps, 'field' | 'form' | 'meta' | 'Label'> {
+        Omit<MUICheckboxWithLabelProps, 'field' | 'form' | 'meta' | 'Label' | 'onClick'> {
     name: string;
+    onClick?: (event: Event) => void;
     label: string;
 }
 
@@ -25,6 +27,7 @@ export const CheckboxWithLabel: React.FC<CheckboxWithLabelProps> = ({
     xl,
     name,
     label,
+    onClick,
     ...props
 }) => {
     const classes = useStyles();
@@ -35,6 +38,11 @@ export const CheckboxWithLabel: React.FC<CheckboxWithLabelProps> = ({
                 type='checkbox'
                 name={name}
                 Label={{ label }}
+                onClick={(event: Event) => {
+                    if (onClick) {
+                        onClick(event);
+                    }
+                }}
                 {...props}
             />
         </Grid>

@@ -31,7 +31,7 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
 }) => {
     return (
         <>
-            <Label label={label} id={id} error={error} />
+            <Label label={label} id={id} error={error} touched={touched} />
             <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
                 <Field
                     name={name}

@@ -16,6 +16,8 @@ export interface TextFieldProps
     name: string;
     label?: string;
     error: string | undefined;
+    touched: boolean | undefined;
+    hideLabel?: boolean;
 }
 
 export const TextField: React.FC<TextFieldProps> = ({
@@ -27,17 +29,23 @@ export const TextField: React.FC<TextFieldProps> = ({
     label,
     id,
     error,
+    touched,
+    disabled,
+    hideLabel,
     ...props
 }) => {
     const classes = useStyles();
     return (
         <>
-            <Label label={label} id={id} error={error} />
+            {!hideLabel && (
+                <Label label={label} id={id} error={error} touched={touched} disabled={disabled} />
+            )}
             <Grid item xs={xs || 12} sm={sm} md={md || 5} lg={lg} xl={xl}>
                 <Field
                     component={MUITextField}
                     className={classes.TextField}
                     variant='outlined'
+                    disabled={disabled}
                     {...props}
                 />
             </Grid>

@@ -7,14 +7,21 @@ export interface LabelProps {
     label?: string;
     id: string;
     error: string | undefined;
+    touched: boolean | undefined;
+    disabled?: boolean | undefined;
 }
 
-const Label: React.FC<LabelProps> = ({ label, id, error }) => {
+const Label: React.FC<LabelProps> = ({ label, id, error, touched, disabled }) => {
     const classes = useStyles();
     return (
         <>
             <Grid item xs={12} md={4} className={classes.LabelGrid}>
-                <FormLabel className={classes.LabelTitle} htmlFor={id} error={!!error}>
+                <FormLabel
+                    className={classes.LabelTitle}
+                    htmlFor={id}
+                    error={touched && !!error}
+                    disabled={disabled}
+                >
                     {label}
                 </FormLabel>
                 <FormHelperText className={classes.HelperText}></FormHelperText>

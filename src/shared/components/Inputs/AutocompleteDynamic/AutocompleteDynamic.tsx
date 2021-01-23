@@ -59,7 +59,7 @@ export const AutocompleteDynamic: React.FC<AutocompleteDynamicProps> = ({
 
     return (
         <>
-            <Label label={label} id={id} error={error} />
+            <Label label={label} id={id} error={error} touched={touched} />
             <Grid item xs={xs || 12} sm={sm} md={md || 5} lg={lg} xl={xl}>
                 <Field
                     id={name}
