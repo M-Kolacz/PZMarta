@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field } from 'formik';
 import { Grid } from '@material-ui/core';
+import ScheduleIcon from '@material-ui/icons/Schedule';
 import { KeyboardTimePicker, KeyboardTimePickerProps } from 'formik-material-ui-pickers';
 
 import useStyles from './TimePickerStyles';
@@ -18,7 +19,13 @@ export const TimePicker: React.FC<TimePickerProps> = ({ xs, sm, md, lg, xl, ...p
     const classes = useStyles();
     return (
         <Grid item xs={xs || 12} sm={sm || 6} md={md} lg={lg} xl={xl}>
-            <Field component={KeyboardTimePicker} className={classes.TimePicker} {...props} />
+            <Field
+                component={KeyboardTimePicker}
+                className={classes.TimePicker}
+                {...props}
+                keyboardIcon={<ScheduleIcon />}
+                ampm={false}
+            />
         </Grid>
     );
 };

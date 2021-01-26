@@ -6,6 +6,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { MuiThemeProvider } from '@material-ui/core';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import plLocale from 'date-fns/locale/pl';
+
 import theme from './theme/theme';
 
 import { exampleReducer } from './store/reducers/example';
@@ -24,7 +26,7 @@ ReactDOM.render(
         <Provider store={store}>
             <Router>
                 <MuiThemeProvider theme={theme}>
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={plLocale}>
                         <App />
                     </MuiPickersUtilsProvider>
                 </MuiThemeProvider>
