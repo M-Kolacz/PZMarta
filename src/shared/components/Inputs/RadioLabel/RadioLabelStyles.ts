@@ -6,6 +6,10 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         flexWrap: 'wrap',
         position: 'relative',
+        marginBottom: '15px',
+        [theme.breakpoints.up('md')]: {
+            marginBottom: 0,
+        },
     },
     LabelTitle: {
         color: theme.palette.primary.main,
@@ -13,10 +17,13 @@ const useStyles = makeStyles((theme) => ({
     },
     HelperText: {
         position: 'absolute',
-        bottom: '-15px',
-        left: '5px',
+        bottom: '-20px',
+
         fontSize: '13px',
         color: 'red',
+        [theme.breakpoints.up('md')]: {
+            bottom: '-15px',
+        },
     },
 }));
 
