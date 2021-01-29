@@ -15,12 +15,13 @@ const Header: React.FC<HeaderProps> = () => {
             item
             xs={12}
             justify='space-between'
+            alignItems='center'
             component='header'
             className={classes.NavigationContainer}
         >
             <Logo className={classes.Logo} />
 
-            <Grid alignItems='center' className={classes.ComunicationContainer}>
+            <Grid className={classes.ComunicationContainer}>
                 <Button variant='contained' color='secondary' className={classes.Button}>
                     Zaloguj się
                 </Button>

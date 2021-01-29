@@ -1,9 +1,14 @@
 import React from 'react';
 import { Field } from 'formik';
-import { Grid } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
 
-import SectionForm from '../../shared/components/SectionForm/SectionForm';
+import { firstStepInitialValues, firstStepValidationSchema } from './Steps/FirstStep/data';
+import { secondStepInitialValues, secondStepValidationSchema } from './Steps/SecondStep/data';
+import { thirdStepInitialValues, thirdStepValidationSchema } from './Steps/ThirdStep/data';
+
+import FirstStep from './Steps/FirstStep/FirstStep';
+import SecondStep from './Steps/SecondStep/SecondStep';
+import ThirdStep from './Steps/ThirdStep/ThirdStep';
 import { FormikStepper, FormikStep } from '../../shared/components/Form/Form';
 
 import { object, string } from 'yup';
@@ -16,21 +21,18 @@ export interface FormProps {
 const Form: React.FC<FormProps> = ({ handleBack, handleNext }) => {
     return (
         <FormikStepper
-            initialValues={{ policyNumber: '', secondName: '', lastName: '' }}
+            initialValues={{
+                ...firstStepInitialValues,
+                ...secondStepInitialValues,
+                ...thirdStepInitialValues,
+            }}
             onSubmit={() => {}}
             handleBack={handleBack}
             handleNext={handleNext}
         >
-            <FormikStep>
-                <SectionForm>Data zdarzenia</SectionForm>
-            </FormikStep>
-            <FormikStep
-                validationSchema={object({
-                    secondName: string().required('Wymagany'),
-                })}
-            >
-                <Field name='secondName' component={TextField} label='Second name' />
-            </FormikStep>
+            <FirstStep validationSchema={firstStepValidationSchema} />
+            <SecondStep validationSchema={secondStepValidationSchema} />
+            <ThirdStep validationSchema={thirdStepValidationSchema} />
             <FormikStep
                 validationSchema={object({
                     lastName: string().required('Wymagany'),
