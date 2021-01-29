@@ -4,6 +4,7 @@ import { TextField } from 'formik-material-ui';
 
 import { firstStepInitialValues, firstStepValidationSchema } from './Steps/FirstStep/data';
 import { secondStepInitialValues, secondStepValidationSchema } from './Steps/SecondStep/data';
+import { thirdStepInitialValues, thirdStepValidationSchema } from './Steps/ThirdStep/data';
 
 import FirstStep from './Steps/FirstStep/FirstStep';
 import SecondStep from './Steps/SecondStep/SecondStep';
@@ -23,14 +24,15 @@ const Form: React.FC<FormProps> = ({ handleBack, handleNext }) => {
             initialValues={{
                 ...firstStepInitialValues,
                 ...secondStepInitialValues,
+                ...thirdStepInitialValues,
             }}
             onSubmit={() => {}}
             handleBack={handleBack}
             handleNext={handleNext}
         >
-            <FirstStep />
-            <SecondStep />
-            <ThirdStep />
+            <FirstStep validationSchema={firstStepValidationSchema} />
+            <SecondStep validationSchema={secondStepValidationSchema} />
+            <ThirdStep validationSchema={thirdStepValidationSchema} />
             <FormikStep
                 validationSchema={object({
                     lastName: string().required('Wymagany'),

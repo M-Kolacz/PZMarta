@@ -18,6 +18,7 @@ export interface TextFieldProps
     error: string | undefined;
     touched: boolean | undefined;
     hideLabel?: boolean;
+    labelSize?: GridProps;
 }
 
 export const TextField: React.FC<TextFieldProps> = ({
@@ -32,13 +33,21 @@ export const TextField: React.FC<TextFieldProps> = ({
     touched,
     disabled,
     hideLabel,
+    labelSize,
     ...props
 }) => {
     const classes = useStyles();
     return (
         <>
             {!hideLabel && (
-                <Label label={label} id={id} error={error} touched={touched} disabled={disabled} />
+                <Label
+                    label={label}
+                    id={id}
+                    error={error}
+                    touched={touched}
+                    disabled={disabled}
+                    labelSize={labelSize}
+                />
             )}
             <Grid item xs={xs || 12} sm={sm} md={md || 5} lg={lg} xl={xl}>
                 <Field
