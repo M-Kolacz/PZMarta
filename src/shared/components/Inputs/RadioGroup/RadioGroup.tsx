@@ -9,21 +9,19 @@ import { Event } from '../../../types/event';
 
 import useStyles from './RadioGroupStyles';
 
-export interface RadioGroupProps extends RadioLabelProps, GridProps {
+export interface RadioGroupProps {
     name: string;
     id: string;
+    label?: string;
     controls: { value: string; label: string }[];
     onClick?: (event: Event) => void;
     error: string | undefined;
     touched: boolean | undefined;
+    labelProps?: RadioLabelProps;
+    radioGroupGrid?: GridProps;
 }
 
 export const RadioGroup: React.FC<RadioGroupProps> = ({
-    xs,
-    sm,
-    md,
-    lg,
-    xl,
     name,
     id,
     label,
@@ -31,11 +29,14 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     onClick,
     error,
     touched,
+    labelProps,
+    radioGroupGrid = { xs: 12 },
 }) => {
+    const newLabelProps = { label, id, error, touched, ...labelProps };
     const classes = useStyles();
 
     return (
-        <Grid item xs={xs || 12} sm={sm} md={md} lg={lg} xl={xl}>
+        <Grid item {...radioGroupGrid}>
             <Field
                 component={MUIRadioGroup}
                 name={name}
@@ -47,7 +48,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
                     }
                 }}
             >
-                <RadioLabel label={label} id={id} error={error} touched={touched} />
+                <RadioLabel {...newLabelProps} />
                 {controls.map((control) => (
                     <FormControlLabel
                         className={classes.FormControlLabel}

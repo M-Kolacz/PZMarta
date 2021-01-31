@@ -12,19 +12,15 @@ import { GridProps } from '../../../interfaces/MaterialUI';
 import useStyles from './CheckboxWithLabelStyles';
 
 export interface CheckboxWithLabelProps
-    extends GridProps,
-        Omit<MUICheckboxWithLabelProps, 'field' | 'form' | 'meta' | 'Label' | 'onClick'> {
+    extends Omit<MUICheckboxWithLabelProps, 'field' | 'form' | 'meta' | 'Label' | 'onClick'> {
     name: string;
     onClick?: (event: Event) => void;
     label: string;
+    checkBoxGrid?: GridProps;
 }
 
 export const CheckboxWithLabel: React.FC<CheckboxWithLabelProps> = ({
-    xs,
-    sm,
-    md,
-    lg,
-    xl,
+    checkBoxGrid = { xs: 12, md: 6 },
     name,
     label,
     onClick,
@@ -32,7 +28,7 @@ export const CheckboxWithLabel: React.FC<CheckboxWithLabelProps> = ({
 }) => {
     const classes = useStyles();
     return (
-        <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl} className={classes.Checkbox}>
+        <Grid item className={classes.Checkbox} {...checkBoxGrid}>
             <Field
                 component={MUICheckboxWithLabel}
                 type='checkbox'

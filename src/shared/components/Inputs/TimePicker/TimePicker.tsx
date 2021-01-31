@@ -9,22 +9,25 @@ import useStyles from './TimePickerStyles';
 import { GridProps } from '../../../interfaces/MaterialUI';
 
 export interface TimePickerProps
-    extends GridProps,
-        Omit<KeyboardTimePickerProps, 'field' | 'form' | 'meta' | 'onChange'> {
+    extends Omit<KeyboardTimePickerProps, 'field' | 'form' | 'meta' | 'onChange'> {
     name: string;
     label: string;
+    timePickerGrid?: GridProps;
 }
 
-export const TimePicker: React.FC<TimePickerProps> = ({ xs, sm, md, lg, xl, ...props }) => {
+export const TimePicker: React.FC<TimePickerProps> = ({
+    timePickerGrid = { xs: 12, sm: 6 },
+    ...props
+}) => {
     const classes = useStyles();
     return (
-        <Grid item xs={xs || 12} sm={sm || 6} md={md} lg={lg} xl={xl}>
+        <Grid item {...timePickerGrid}>
             <Field
                 component={KeyboardTimePicker}
                 className={classes.TimePicker}
-                {...props}
                 keyboardIcon={<ScheduleIcon />}
                 ampm={false}
+                {...props}
             />
         </Grid>
     );

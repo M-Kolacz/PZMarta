@@ -10,51 +10,36 @@ import useStyles from './TextFieldStyles';
 import { GridProps } from '../../../interfaces/MaterialUI';
 
 export interface TextFieldProps
-    extends GridProps,
-        LabelProps,
-        Omit<MUITextFieldProps, 'field' | 'form' | 'meta' | 'onChange' | 'id'> {
+    extends Omit<MUITextFieldProps, 'field' | 'form' | 'meta' | 'onChange'> {
     name: string;
-    label?: string;
-    error: string | undefined;
-    touched: boolean | undefined;
+    error?: string;
+    touched?: boolean;
+    label: string;
     hideLabel?: boolean;
-    labelSize?: GridProps;
+    labelProps?: LabelProps;
+    textFieldGrid?: GridProps;
 }
 
 export const TextField: React.FC<TextFieldProps> = ({
-    xs,
-    sm,
-    md,
-    lg,
-    xl,
-    label,
     id,
+    label,
+    hideLabel,
+    labelProps,
     error,
     touched,
-    disabled,
-    hideLabel,
-    labelSize,
+    textFieldGrid = { xs: 12, md: 5 },
     ...props
 }) => {
+    const newLabelProps = { id, label, error, touched, ...labelProps };
     const classes = useStyles();
     return (
         <>
-            {!hideLabel && (
-                <Label
-                    label={label}
-                    id={id}
-                    error={error}
-                    touched={touched}
-                    disabled={disabled}
-                    labelSize={labelSize}
-                />
-            )}
-            <Grid item xs={xs || 12} sm={sm} md={md || 5} lg={lg} xl={xl}>
+            {!hideLabel && <Label {...newLabelProps} />}
+            <Grid item {...textFieldGrid}>
                 <Field
                     component={MUITextField}
                     className={classes.TextField}
                     variant='outlined'
-                    disabled={disabled}
                     {...props}
                 />
             </Grid>

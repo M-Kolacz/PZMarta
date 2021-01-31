@@ -64,7 +64,7 @@ const SecondStep: React.FC<SecondStepProps> = () => {
                 disabled={values.aboard}
                 touched={touched.apartmentNumber}
             />
-            <CheckboxWithLabel {...aboard} xs={12} />
+            <CheckboxWithLabel {...aboard} checkBoxGrid={{ xs: 12 }} />
 
             {conditionalCountry(values.aboard) && (
                 <>

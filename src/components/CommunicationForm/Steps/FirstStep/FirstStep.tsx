@@ -21,7 +21,7 @@ import {
     DatePicker,
     TimePicker,
     RadioGroup,
-    AutocompleteDynamic,
+    Autocomplete,
     TextField,
     CheckboxWithLabel,
 } from '../../../../shared/components/Inputs';
@@ -83,20 +83,15 @@ const FirstStep: React.FC<FirstStepProps> = () => {
                 }}
             />
             <SectionForm>Przyczyna powstania szkody</SectionForm>
-            <AutocompleteDynamic
+            <Autocomplete
                 {...reason}
                 error={errors.reason}
                 touched={touched.reason}
                 conditionalOptions={() => conditionalReasonOptions(values.damage, values.owner)}
             />
             <SectionForm>Polisa</SectionForm>
-            <TextField
-                {...policy}
-                disabled={values.knownPolicy}
-                error={errors.policy}
-                touched={touched.policy}
-            />
-            <CheckboxWithLabel {...knownPolicy} md={3} />
+            <TextField {...policy} error={errors.policy} touched={touched.policy} />
+            <CheckboxWithLabel {...knownPolicy} checkBoxGrid={{ md: 3 }} />
 
             {conditionalRegistrationNumber(values.damage, values.owner) && (
                 <TextField

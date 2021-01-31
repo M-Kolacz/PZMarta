@@ -8,16 +8,19 @@ import useStyles from './DatePickerStyles';
 import { GridProps } from '../../../interfaces/MaterialUI';
 
 export interface DatePickerProps
-    extends GridProps,
-        Omit<KeyboardDatePickerProps, 'field' | 'form' | 'meta' | 'onChange'> {
+    extends Omit<KeyboardDatePickerProps, 'field' | 'form' | 'meta' | 'onChange'> {
     name: string;
     label: string;
+    datePickerGrid?: GridProps;
 }
 
-export const DatePicker: React.FC<DatePickerProps> = ({ xs, sm, md, lg, xl, ...props }) => {
+export const DatePicker: React.FC<DatePickerProps> = ({
+    datePickerGrid = { xs: 12, sm: 6 },
+    ...props
+}) => {
     const classes = useStyles();
     return (
-        <Grid item xs={xs || 12} sm={sm || 6} md={md} lg={lg} xl={xl}>
+        <Grid item {...datePickerGrid}>
             <Field
                 component={KeyboardDatePicker}
                 className={classes.DataPicker}

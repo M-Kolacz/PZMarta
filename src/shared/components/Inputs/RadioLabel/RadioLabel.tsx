@@ -1,20 +1,28 @@
 import React from 'react';
-import { FormLabel, FormHelperText, Grid } from '@material-ui/core';
+import { FormLabel, FormHelperText, Grid, FormLabelProps } from '@material-ui/core';
+
+import { GridProps } from '../../../interfaces/MaterialUI';
 
 import useStyles from './RadioLabelStyles';
 
-export interface RadioLabelProps {
+export interface RadioLabelProps extends Omit<FormLabelProps, 'error'> {
     label?: string;
-    id: string;
-    error: string | undefined;
-    touched: boolean | undefined;
+    error?: string | undefined;
+    touched?: boolean | undefined;
+    radioLabelGrid?: GridProps;
 }
 
-const RadioLabel: React.FC<RadioLabelProps> = ({ label, id, error, touched }) => {
+const RadioLabel: React.FC<RadioLabelProps> = ({
+    label,
+    id,
+    error,
+    touched,
+    radioLabelGrid = { xs: 12, md: 4 },
+}) => {
     const classes = useStyles();
     return (
         <>
-            <Grid item xs={12} md={4} className={classes.LabelGrid}>
+            <Grid item className={classes.LabelGrid} {...radioLabelGrid}>
                 <FormLabel className={classes.LabelTitle} htmlFor={id} error={touched && !!error}>
                     {label}
                 </FormLabel>
