@@ -12,7 +12,6 @@ export type Owner = 'personal' | 'confessor';
 export type PolicyOwner = 'naturalPerson' | 'company';
 
 export const conditionalPersonDeath = (damage: Damage) => {
-    console.log('render conditionalPersonDeath');
     return damage === 'person';
 };
 
