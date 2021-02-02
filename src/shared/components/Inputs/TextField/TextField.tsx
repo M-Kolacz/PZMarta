@@ -40,6 +40,7 @@ export const TextField: React.FC<TextFieldProps> = ({
                     component={MUITextField}
                     className={classes.TextField}
                     variant='outlined'
+                    label={label}
                     {...props}
                 />
             </Grid>

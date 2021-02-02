@@ -22,12 +22,7 @@ const Header: React.FC<HeaderProps> = () => {
             <Logo className={classes.Logo} />
 
             <Grid className={classes.ComunicationContainer}>
-                <Button
-                    variant='contained'
-                    color='secondary'
-                    className={classes.Button}
-                    onClick={handleOpen}
-                >
+                <Button variant='contained' color='secondary' className={classes.Button}>
                     Zaloguj się
                 </Button>
 
