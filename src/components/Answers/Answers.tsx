@@ -21,14 +21,20 @@ const Answers: React.FC<AnswersProps> = () => {
             </Typography>
 
             <Accordion accordion={AccordionOptions} xs={12} md={6} />
-            <Image xs={12} md={6} imageSrc={happyClientSrc} imageAlt='' role='presentation' />
+            <Image
+                imageGrid={{ xs: 12, md: 6 }}
+                image={{ src: happyClientSrc, alt: '', role: 'presentation' }}
+            />
             <Accordion
                 accordion={AccordionOptions2}
                 xs={12}
                 md={6}
                 className={classes.AccordeonOrder}
             />
-            <Image xs={12} md={6} imageSrc={happyClientSrc2} imageAlt='' role='presentation' />
+            <Image
+                imageGrid={{ xs: 12, md: 6 }}
+                image={{ src: happyClientSrc2, alt: '', role: 'presentation' }}
+            />
         </Grid>
     );
 };

@@ -3,23 +3,18 @@ import { Grid, GridProps } from '@material-ui/core';
 
 import useStyles from './ImageStyles';
 
-export interface ImageProps extends GridProps {
-    imageSrc: string;
-    imageAlt?: string;
-    imageClass?: string;
-    role?: string;
+// import { GridProps } from '../../interfaces/MaterialUI';
+
+export interface ImageProps {
+    imageGrid?: GridProps;
+    image: React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
 }
 
-const Image: React.FC<ImageProps> = ({ imageSrc, imageAlt, imageClass, role, ...gridProps }) => {
+const Image: React.FC<ImageProps> = ({ imageGrid = { xs: 12, md: 6 }, image }) => {
     const classes = useStyles();
     return (
-        <Grid {...gridProps} item>
-            <img
-                src={imageSrc}
-                alt={imageAlt || ''}
-                className={`${imageClass || ''} ${classes.Image}`}
-                role={role || ''}
-            />
+        <Grid item {...imageGrid}>
+            <img className={classes.Image} {...image} />
         </Grid>
     );
 };
