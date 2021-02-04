@@ -2,11 +2,12 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { CssBaseline, Grid } from '@material-ui/core';
 
-import { mainPath, comumunicationDamagePath } from './shared/SSOT/paths';
+import { mainPath, comumunicationDamagePath, loginPath } from './shared/SSOT/paths';
 
 import MainPage from './pages/MainPage';
-import Footer from './components/Footer/Footer';
+import LoginPage from './pages/LoginPage';
 import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import CommunicationPage from './pages/CommunicationPage';
 
 import useStyles from './AppStyles';
@@ -20,6 +21,7 @@ function App() {
                 <Switch>
                     <Route exact path={mainPath} component={MainPage} />
                     <Route path={comumunicationDamagePath} component={CommunicationPage} />
+                    <Route path={loginPath} component={LoginPage} />
 
                     <Redirect to={mainPath} />
                 </Switch>

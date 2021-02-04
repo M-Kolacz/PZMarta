@@ -1,5 +1,8 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import { Grid, Typography, Hidden, Button } from '@material-ui/core';
+
+import { loginPath } from '../../shared/SSOT/paths';
 
 import Logo from '../../shared/components/Logo/Logo';
 
@@ -9,6 +12,7 @@ export interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = () => {
     const classes = useStyles();
+
     return (
         <Grid
             container
@@ -22,7 +26,13 @@ const Header: React.FC<HeaderProps> = () => {
             <Logo className={classes.Logo} />
 
             <Grid className={classes.ComunicationContainer}>
-                <Button variant='contained' color='secondary' className={classes.Button}>
+                <Button
+                    component={RouterLink}
+                    to={loginPath}
+                    variant='contained'
+                    color='secondary'
+                    className={classes.Button}
+                >
                     Zaloguj się
                 </Button>
 
