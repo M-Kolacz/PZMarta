@@ -1,8 +1,10 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 
+import { CustomError } from '../Error';
+
 export const useFetch = () => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<null | { message: string; statusCode: number }>(null);
 
     const activeHttpRequests = useRef<AbortController[]>([]);
 
@@ -17,12 +19,11 @@ export const useFetch = () => {
             const httpAbortController = new AbortController();
 
             activeHttpRequests.current.push(httpAbortController);
-            const jsonBody = JSON.stringify(body);
 
             try {
                 const response = await fetch(url, {
                     method,
-                    body: jsonBody,
+                    body: JSON.stringify(body),
                     headers,
                     signal: httpAbortController.signal,
                 });
@@ -32,14 +33,13 @@ export const useFetch = () => {
                 activeHttpRequests.current = activeHttpRequests.current.filter(
                     (reqCtrl) => reqCtrl !== httpAbortController,
                 );
-
                 if (!response.ok) {
-                    throw new Error(responseData.message);
+                    throw new CustomError(responseData.message, response.status);
                 }
                 setIsLoading(false);
                 return responseData;
             } catch (error) {
-                setError(error.message);
+                setError(error);
                 setIsLoading(false);
                 throw error;
             }
