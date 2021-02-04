@@ -7,3 +7,5 @@ export const propertyDamagePath = '/szkoda-majątkowa';
 export const accidentDamagePath = '/szkoda-nnw';
 
 export const loginPath = '/logowanie';
+
+export const registationPath = '/rejestracja';

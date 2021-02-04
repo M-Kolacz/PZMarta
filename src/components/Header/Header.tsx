@@ -2,7 +2,7 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Grid, Typography, Hidden, Button } from '@material-ui/core';
 
-import { loginPath } from '../../shared/SSOT/paths';
+import { loginPath } from '../../shared/SSOT/paths/applicationPaths';
 
 import Logo from '../../shared/components/Logo/Logo';
 
