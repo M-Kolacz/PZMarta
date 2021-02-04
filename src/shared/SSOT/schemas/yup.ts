@@ -1,11 +1,19 @@
 import * as Yup from 'yup';
 
-import { errorField } from './errorDescriptions';
+import { requiredField, emailField, passwordField } from './errorDescriptions';
 
-export const dateValidation = Yup.string().required(errorField).nullable();
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
 
-export const stringValidation = Yup.string().required(errorField);
+export const dateValidation = Yup.string().required(requiredField).nullable();
 
-export const objectValidation = Yup.object().required(errorField).nullable();
+export const stringValidation = Yup.string().required(requiredField);
+
+export const objectValidation = Yup.object().required(requiredField).nullable();
+
+export const emailValidation = Yup.string().required(requiredField).email(emailField);
+
+export const passwordValidation = Yup.string().required(requiredField).matches(passwordRegex, {
+    message: passwordField,
+});
 
 export const booleanValidation = Yup.boolean();
