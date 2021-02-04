@@ -1,43 +1,87 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import { Link as RouterLink } from 'react-router-dom';
-import { Button, Grid, Link } from '@material-ui/core';
+import { Button, Grid, Link, Typography } from '@material-ui/core';
 
-import { fieldsData, initialValues } from './data';
+import { loginApi } from '../../shared/SSOT/paths/apiPaths';
+import { registationPath } from '../../shared/SSOT/paths/applicationPaths';
+import { useFetch } from '../../shared/hooks/useFetch';
+import { fieldsData, initialValues, validationSchema } from './data';
 
 import { TextField } from '../../shared/components/Inputs';
+import LoadingSpinner from '../../shared/components/LoadingSpinner/LoadingSpinner';
+
+import useStyles from './LoginFormStyles';
 
 export interface LoginFormProps {}
 
 const { email, password } = fieldsData;
 
 const LoginForm: React.FC<LoginFormProps> = () => {
+    const classes = useStyles();
+    const { sendRequest, clearError, error, isLoading } = useFetch();
+
     return (
         <Formik
             initialValues={initialValues}
-            onSubmit={() => {
-                console.log('formik');
+            validationSchema={validationSchema}
+            onSubmit={async (values, actions) => {
+                actions.validateForm();
+                try {
+                    const response = await sendRequest(loginApi, 'POST', values);
+                } catch (error) {
+                    actions.setErrors({ [email.name]: true, [password.name]: true });
+                }
             }}
         >
-            {(props) => (
-                <Grid item xs={12} md={6}>
-                    <Form style={{ width: '94%', margin: '10px auto' }}>
-                        <Grid container spacing={2}>
-                            <TextField {...email} textFieldGrid={{ xs: 12 }} />
-                            <TextField {...password} textFieldGrid={{ xs: 12 }} />
-                            <Grid item xs={12} style={{ textAlign: 'right' }}>
-                                <Link component={RouterLink} to='/rejestracja'>
-                                    Nie posiadasz konta? Zarejestruj się!
-                                </Link>
+            {({ handleBlur }) => (
+                <>
+                    <Grid item xs={12} md={6}>
+                        <Form
+                            className={classes.Form}
+                            onChange={() => {
+                                clearError();
+                            }}
+                        >
+                            <Grid container spacing={2}>
+                                <TextField
+                                    {...email}
+                                    textFieldGrid={{ xs: 12 }}
+                                    onBlur={(e) => {
+                                        handleBlur(e);
+                                        clearError();
+                                    }}
+                                />
+                                <TextField
+                                    {...password}
+                                    textFieldGrid={{ xs: 12 }}
+                                    onBlur={(e) => {
+                                        handleBlur(e);
+                                        clearError();
+                                    }}
+                                />
+                                {error && (
+                                    <Grid item xs={12} className={classes.ErrorContainer}>
+                                        <Typography className={classes.Error}>
+                                            Podany login lub hasło są nieprawidłowe.
+                                        </Typography>
+                                    </Grid>
+                                )}
+                                <Grid item xs={12} className={classes.FormElementContainer}>
+                                    <Link component={RouterLink} to={registationPath}>
+                                        Nie posiadasz konta? Zarejestruj się!
+                                    </Link>
+                                </Grid>
+                                <Grid item xs={12} className={classes.FormElementContainer}>
+                                    <Button variant='contained' color='secondary' type='submit'>
+                                        Zaloguj się
+                                    </Button>
+                                </Grid>
                             </Grid>
-                            <Grid item xs={12} style={{ textAlign: 'right' }}>
-                                <Button variant='contained' color='secondary' type='submit'>
-                                    Zaloguj się
-                                </Button>
-                            </Grid>
-                        </Grid>
-                    </Form>
-                </Grid>
+                        </Form>
+                    </Grid>
+                    <LoadingSpinner open={isLoading} />
+                </>
             )}
         </Formik>
     );

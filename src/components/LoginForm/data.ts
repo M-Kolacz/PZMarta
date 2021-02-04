@@ -1,3 +1,7 @@
+import * as Yup from 'yup';
+
+import { emailValidation, passwordValidation } from '../../shared/SSOT/schemas/yup';
+
 const EMAIL = 'email';
 const PASSWORD = 'password';
 
@@ -27,3 +31,8 @@ export const fieldsData = {
         type: 'password',
     },
 };
+
+export const validationSchema = Yup.object({
+    [EMAIL]: emailValidation,
+    [PASSWORD]: passwordValidation,
+});

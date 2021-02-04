@@ -2,7 +2,11 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { CssBaseline, Grid } from '@material-ui/core';
 
-import { mainPath, comumunicationDamagePath, loginPath } from './shared/SSOT/paths';
+import {
+    mainPath,
+    comumunicationDamagePath,
+    loginPath,
+} from './shared/SSOT/paths/applicationPaths';
 
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
