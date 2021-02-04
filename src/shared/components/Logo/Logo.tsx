@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import defaultLogoSrc from '../../../images/svg/logo2.svg';
+import defaultLogoSrc from '../../../images/svg/logo.svg';
 
 import useStyles from './LogoStyles';
 
