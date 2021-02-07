@@ -1,7 +1,9 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { CssBaseline, Grid } from '@material-ui/core';
+import { AuthContext } from './context/auth-context';
 
+import { useAuth } from './shared/hooks/useAuth';
 import {
     mainPath,
     comumunicationDamagePath,
@@ -18,20 +20,24 @@ import useStyles from './AppStyles';
 
 function App() {
     const classes = useStyles();
-    return (
-        <CssBaseline>
-            <Grid container className={classes.AppContainer}>
-                <Header />
-                <Switch>
-                    <Route exact path={mainPath} component={MainPage} />
-                    <Route path={comumunicationDamagePath} component={CommunicationPage} />
-                    <Route path={loginPath} component={LoginPage} />
 
-                    <Redirect to={mainPath} />
-                </Switch>
-                <Footer />
-            </Grid>
-        </CssBaseline>
+    const { login, logout, token, userId } = useAuth();
+    return (
+        <AuthContext.Provider value={{ isLoggedIn: !!token, token, login, logout, userId }}>
+            <CssBaseline>
+                <Grid container className={classes.AppContainer}>
+                    <Header />
+                    <Switch>
+                        <Route exact path={mainPath} component={MainPage} />
+                        <Route path={comumunicationDamagePath} component={CommunicationPage} />
+                        <Route path={loginPath} component={LoginPage} />
+
+                        <Redirect to={mainPath} />
+                    </Switch>
+                    <Footer />
+                </Grid>
+            </CssBaseline>
+        </AuthContext.Provider>
     );
 }
 

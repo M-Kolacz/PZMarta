@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { Link as RouterLink } from 'react-router-dom';
 import { Button, Grid, Link, Typography } from '@material-ui/core';
 
+import { useFetch } from '../../shared/hooks/useFetch';
+import { AuthContext } from '../../context/auth-context';
+
 import { loginApi } from '../../shared/SSOT/paths/apiPaths';
 import { registationPath } from '../../shared/SSOT/paths/applicationPaths';
-import { useFetch } from '../../shared/hooks/useFetch';
 import { fieldsData, initialValues, validationSchema } from './data';
 
 import { TextField } from '../../shared/components/Inputs';
@@ -19,6 +22,10 @@ const { email, password } = fieldsData;
 
 const LoginForm: React.FC<LoginFormProps> = () => {
     const classes = useStyles();
+    const history = useHistory();
+
+    const { login } = useContext(AuthContext);
+
     const { sendRequest, clearError, error, isLoading } = useFetch();
 
     return (
@@ -29,6 +36,8 @@ const LoginForm: React.FC<LoginFormProps> = () => {
                 actions.validateForm();
                 try {
                     const response = await sendRequest(loginApi, 'POST', values);
+                    login(response.token as any, null, response.userId);
+                    history.push('/');
                 } catch (error) {
                     actions.setErrors({ [email.name]: true, [password.name]: true });
                 }
