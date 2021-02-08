@@ -8,4 +8,4 @@ export const accidentDamagePath = '/szkoda-nnw';
 
 export const loginPath = '/logowanie';
 
-export const registationPath = '/rejestracja';
+export const registrationPath = '/rejestracja';

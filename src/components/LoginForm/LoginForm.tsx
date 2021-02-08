@@ -8,7 +8,7 @@ import { useFetch } from '../../shared/hooks/useFetch';
 import { AuthContext } from '../../context/auth-context';
 
 import { loginApi } from '../../shared/SSOT/paths/apiPaths';
-import { registationPath } from '../../shared/SSOT/paths/applicationPaths';
+import { registrationPath } from '../../shared/SSOT/paths/applicationPaths';
 import { fieldsData, initialValues, validationSchema } from './data';
 
 import { TextField } from '../../shared/components/Inputs';
@@ -77,7 +77,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
                                     </Grid>
                                 )}
                                 <Grid item xs={12} className={classes.FormElementContainer}>
-                                    <Link component={RouterLink} to={registationPath}>
+                                    <Link component={RouterLink} to={registrationPath}>
                                         Nie posiadasz konta? Zarejestruj się!
                                     </Link>
                                 </Grid>
