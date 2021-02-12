@@ -1,16 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { Link as RouterLink } from 'react-router-dom';
 import { Button, Grid, Link, Typography } from '@material-ui/core';
 
 import { useFetch } from '../../shared/hooks/useFetch';
-import { AuthContext } from '../../context/auth-context';
 
+import { confirmEmail } from '../../shared/SSOT/snackbars';
 import { registrationApi } from '../../shared/SSOT/paths/apiPaths';
 import { loginPath } from '../../shared/SSOT/paths/applicationPaths';
 import { fieldsData, initialValues, validationSchema } from './data';
 
+import Snackbar from '../../shared/components/Snackbar/Snackbar';
 import { TextField } from '../../shared/components/Inputs';
 import LoadingSpinner from '../../shared/components/LoadingSpinner/LoadingSpinner';
 
@@ -23,9 +24,13 @@ const { email, password } = fieldsData;
 const RegistationForm: React.FC<RegistationFormProps> = () => {
     const classes = useStyles();
     const history = useHistory();
+    const [open, setOpen] = useState(false);
 
-    const { login } = useContext(AuthContext);
     const { sendRequest, clearError, error, isLoading } = useFetch();
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <Formik
@@ -33,14 +38,16 @@ const RegistationForm: React.FC<RegistationFormProps> = () => {
             validationSchema={validationSchema}
             onSubmit={async (values, actions) => {
                 actions.validateForm();
-                try {
-                    console.log(values);
-                    const response = await sendRequest(registrationApi, 'POST', values);
-                    login(response.token as any, null, response.userId);
-                    history.push('/');
-                } catch (error) {
-                    actions.setErrors({ [email.name]: true, [password.name]: true });
-                    console.log(error);
+                clearError();
+
+                const response = await sendRequest(registrationApi, 'POST', values).catch(
+                    (error) => {
+                        actions.setErrors({ [email.name]: true, [password.name]: true });
+                        return null;
+                    },
+                );
+                if (response) {
+                    setOpen(true);
                 }
             }}
         >
@@ -91,6 +98,12 @@ const RegistationForm: React.FC<RegistationFormProps> = () => {
                         </Form>
                     </Grid>
                     <LoadingSpinner open={isLoading} />
+                    <Snackbar
+                        open={open}
+                        onClose={handleClose}
+                        alertProps={{ severity: 'info' }}
+                        {...confirmEmail}
+                    />
                 </>
             )}
         </Formik>
