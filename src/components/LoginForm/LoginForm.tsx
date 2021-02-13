@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { Link as RouterLink } from 'react-router-dom';
 import { Button, Grid, Link, Typography } from '@material-ui/core';
@@ -23,10 +23,16 @@ const { email, password } = fieldsData;
 const LoginForm: React.FC<LoginFormProps> = () => {
     const classes = useStyles();
     const history = useHistory();
+    const { token } = useParams<{ token?: string }>();
 
     const { login } = useContext(AuthContext);
 
     const { sendRequest, clearError, error, isLoading } = useFetch();
+    const activeToken = useFetch();
+
+    if (token) {
+        activeToken.sendRequest('', 'POST', { token });
+    }
 
     return (
         <Formik

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { Link as RouterLink } from 'react-router-dom';
 import { Button, Grid, Link, Typography } from '@material-ui/core';
@@ -23,7 +22,7 @@ const { email, password } = fieldsData;
 
 const RegistationForm: React.FC<RegistationFormProps> = () => {
     const classes = useStyles();
-    const history = useHistory();
+
     const [open, setOpen] = useState(false);
 
     const { sendRequest, clearError, error, isLoading } = useFetch();

@@ -9,6 +9,7 @@ import {
     comumunicationDamagePath,
     loginPath,
     registrationPath,
+    accountActivationPath,
 } from './shared/SSOT/paths/applicationPaths';
 
 import MainPage from './pages/MainPage';
@@ -16,6 +17,7 @@ import LoginPage from './pages/LoginPage';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import RegistrationPage from './pages/RegistationPage';
+import AccountActivationPage from './pages/AccountActivationPage';
 import CommunicationPage from './pages/CommunicationPage';
 
 import useStyles from './AppStyles';
@@ -32,6 +34,7 @@ function App() {
                     <Switch>
                         <Route exact path={mainPath} component={MainPage} />
                         <Route path={comumunicationDamagePath} component={CommunicationPage} />
+                        <Route path={accountActivationPath} component={AccountActivationPage} />
                         <Route path={loginPath} component={LoginPage} />
                         <Route path={registrationPath} component={RegistrationPage} />
 
