@@ -1,11 +1,11 @@
 import React from 'react';
 import { Hidden } from '@material-ui/core';
 
-import Navigation from '../components/Navigation/Navigation';
-import LoginForm from '../components/LoginForm/LoginForm';
-import Image from '../shared/components/Image/Image';
-
 import srcImg from '../images/svg/login.svg';
+
+import Image from '../shared/components/Image/Image';
+import LoginForm from '../components/LoginForm/LoginForm';
+import Navigation from '../components/Navigation/Navigation';
 
 export interface LoginPageProps {}
 

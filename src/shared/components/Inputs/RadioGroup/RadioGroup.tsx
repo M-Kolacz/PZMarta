@@ -5,7 +5,7 @@ import { FormControlLabel, Grid, Radio } from '@material-ui/core';
 
 import { GridProps } from '../../../interfaces/MaterialUI';
 import RadioLabel, { RadioLabelProps } from '../RadioLabel/RadioLabel';
-import { Event } from '../../../types/event';
+import { Event } from '../../../interfaces/event';
 
 import useStyles from './RadioGroupStyles';
 

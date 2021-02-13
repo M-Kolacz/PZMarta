@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { CssBaseline, Grid } from '@material-ui/core';
-import { AuthContext } from './context/auth-context';
 
 import { useAuth } from './shared/hooks/useAuth';
+import { AuthContext } from './context/auth-context';
 import {
     mainPath,
     comumunicationDamagePath,
@@ -17,8 +17,8 @@ import LoginPage from './pages/LoginPage';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import RegistrationPage from './pages/RegistationPage';
-import AccountActivationPage from './pages/AccountActivationPage';
 import CommunicationPage from './pages/CommunicationPage';
+import AccountActivationPage from './pages/AccountActivationPage';
 
 import useStyles from './AppStyles';
 
@@ -37,7 +37,6 @@ function App() {
                         <Route path={accountActivationPath} component={AccountActivationPage} />
                         <Route path={loginPath} component={LoginPage} />
                         <Route path={registrationPath} component={RegistrationPage} />
-
                         <Redirect to={mainPath} />
                     </Switch>
                     <Footer />

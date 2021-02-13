@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 
-import { NotificationButtons } from '../../SSOT/NotificationButtons';
+import { NotificationButtons } from '../../SSOT/pageContent/navigationItems';
 
 import NavigationItem from './NavigationItem';
 
@@ -13,15 +13,8 @@ const NavigationItemList: React.FC<NavigationItemListProps> = () => {
     const classes = useStyles();
     return (
         <Grid container item xs={12} spacing={2} className={classes.NotificationItems}>
-            {NotificationButtons.map(({ description, documents, title, icon, link }) => (
-                <NavigationItem
-                    description={description}
-                    documents={documents}
-                    title={title}
-                    icon={icon}
-                    key={title}
-                    link={link}
-                />
+            {NotificationButtons.map((props) => (
+                <NavigationItem {...props} key={props.title} />
             ))}
         </Grid>
     );

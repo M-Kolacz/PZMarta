@@ -1,24 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
+import { exampleReducer } from './store/reducers/example';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { MuiThemeProvider } from '@material-ui/core';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import plLocale from 'date-fns/locale/pl';
 
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 import theme from './theme/theme';
-
-import { exampleReducer } from './store/reducers/example';
-
+import plLocale from 'date-fns/locale/pl';
 import DateFnsUtils from '@date-io/date-fns';
+import { MuiThemeProvider } from '@material-ui/core';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
 const rootReducer = combineReducers({ exampleReducer });
 
 const store = createStore(rootReducer, composeWithDevTools());

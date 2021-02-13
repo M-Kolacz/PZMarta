@@ -1,7 +1,7 @@
 import React from 'react';
 
-import RegistrationForm from '../components/RegistrationForm/RegistrationForm';
 import Navigation from '../components/Navigation/Navigation';
+import RegistrationForm from '../components/RegistrationForm/RegistrationForm';
 
 export interface RegistationPageProps {}
 

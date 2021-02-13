@@ -6,7 +6,7 @@ import {
     CheckboxWithLabelProps as MUICheckboxWithLabelProps,
 } from 'formik-material-ui';
 
-import { Event } from '../../../types/event';
+import { Event } from '../../../interfaces/event';
 import { GridProps } from '../../../interfaces/MaterialUI';
 
 import useStyles from './CheckboxWithLabelStyles';

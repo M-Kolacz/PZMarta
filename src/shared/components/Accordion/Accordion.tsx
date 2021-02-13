@@ -1,4 +1,5 @@
 import React from 'react';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
     Grid,
     Accordion as MUIAccordion,
@@ -6,11 +7,11 @@ import {
     AccordionDetails,
     Typography,
 } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+import { GridProps } from '../../interfaces/MaterialUI';
 
 import useStyles from './AccordionsStyles';
 
-import { GridProps } from '../../interfaces/MaterialUI';
 export interface AccordionProps extends GridProps {
     accordion: { title: string; description: string }[];
     className?: string;

@@ -1,15 +1,13 @@
-import React, { useContext } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
 import { Formik, Form } from 'formik';
-import { Link as RouterLink } from 'react-router-dom';
+import React, { useContext } from 'react';
 import { Button, Grid, Link, Typography } from '@material-ui/core';
+import { Link as RouterLink, useHistory } from 'react-router-dom';
 
 import { useFetch } from '../../shared/hooks/useFetch';
 import { AuthContext } from '../../context/auth-context';
-
 import { loginApi } from '../../shared/SSOT/paths/apiPaths';
-import { registrationPath } from '../../shared/SSOT/paths/applicationPaths';
 import { fieldsData, initialValues, validationSchema } from './data';
+import { registrationPath } from '../../shared/SSOT/paths/applicationPaths';
 
 import { TextField } from '../../shared/components/Inputs';
 import LoadingSpinner from '../../shared/components/LoadingSpinner/LoadingSpinner';
@@ -23,16 +21,10 @@ const { email, password } = fieldsData;
 const LoginForm: React.FC<LoginFormProps> = () => {
     const classes = useStyles();
     const history = useHistory();
-    const { token } = useParams<{ token?: string }>();
 
     const { login } = useContext(AuthContext);
 
     const { sendRequest, clearError, error, isLoading } = useFetch();
-    const activeToken = useFetch();
-
-    if (token) {
-        activeToken.sendRequest('', 'POST', { token });
-    }
 
     return (
         <Formik

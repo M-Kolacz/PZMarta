@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Grid, Typography, Accordion, AccordionDetails, AccordionSummary } from '@material-ui/core';
 import { SvgIconProps } from '@material-ui/core/SvgIcon';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Grid, Typography, Accordion, AccordionDetails, AccordionSummary } from '@material-ui/core';
+
 import Button from '../Button/Button';
+
 import useStyles from './NavigationItemStyles';
 
 export interface NavigationItemProps {

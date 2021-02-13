@@ -13,7 +13,7 @@ import {
 } from './conditionals';
 import { policyOwnerOptions, damageOptions, personDeathOptions, ownerOptions } from './options';
 
-import { Event } from '../../../../shared/types/event';
+import { Event } from '../../../../shared/interfaces/event';
 
 import { FormikStep } from '../../../../shared/components/Form/Form';
 import SectionForm from '../../../../shared/components/SectionForm/SectionForm';

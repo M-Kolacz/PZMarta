@@ -2,15 +2,19 @@ import React, { useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
 import { useFetch } from '../shared/hooks/useFetch';
-import { acoountActivationApi } from '../shared/SSOT/paths/apiPaths';
 import { loginPath } from '../shared/SSOT/paths/applicationPaths';
+import { acoountActivationApi } from '../shared/SSOT/paths/apiPaths';
 
 import LoadingSpinner from '../shared/components/LoadingSpinner/LoadingSpinner';
 
 export interface AccountActivationPageProps {}
 
+interface ActivationParam {
+    token: string;
+}
+
 const AccountActivationPage: React.FC<AccountActivationPageProps> = () => {
-    const { token } = useParams<{ token: string }>();
+    const { token } = useParams<ActivationParam>();
     const history = useHistory();
 
     const { sendRequest } = useFetch();

@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
+import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Button, Grid, Link, Typography } from '@material-ui/core';
 
 import { useFetch } from '../../shared/hooks/useFetch';
-
-import { confirmEmail } from '../../shared/SSOT/snackbars';
+import { confirmEmail } from '../../shared/SSOT/pageContent/snackbars';
 import { registrationApi } from '../../shared/SSOT/paths/apiPaths';
 import { loginPath } from '../../shared/SSOT/paths/applicationPaths';
 import { fieldsData, initialValues, validationSchema } from './data';

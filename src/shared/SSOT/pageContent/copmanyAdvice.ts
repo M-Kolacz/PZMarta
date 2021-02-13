@@ -1,4 +1,4 @@
-export const AccordionOptions = [
+export const leftSide = [
     { title: 'Jak będzie wyglądała Twoja sprawa ?', description: '' },
     { title: 'Co powinieneś wiedzieć, żeby wynająć pojazd zastępczy ?', description: '' },
     { title: 'Gdzie możesz naprawić swój samochód ?', description: '' },
@@ -10,7 +10,7 @@ export const AccordionOptions = [
     },
     { title: 'Twoje dane osobowe w Marta.', description: '' },
 ];
-export const AccordionOptions2 = [
+export const rightSide = [
     { title: 'Jak możesz zgłosić sprawę ?', description: '' },
     { title: 'Jak możesz dostarczyć dokumenty ?', description: '' },
     { title: 'Jak możesz sprawdzić status sprawy ?', description: '' },

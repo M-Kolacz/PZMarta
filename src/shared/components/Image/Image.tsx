@@ -3,8 +3,6 @@ import { Grid, GridProps } from '@material-ui/core';
 
 import useStyles from './ImageStyles';
 
-// import { GridProps } from '../../interfaces/MaterialUI';
-
 export interface ImageProps {
     imageGrid?: GridProps;
     image: React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;

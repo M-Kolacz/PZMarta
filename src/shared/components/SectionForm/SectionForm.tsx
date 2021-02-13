@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 
 import useStyles from './SectionFormStyles';
+
 export interface SectionFormProps {}
 
 const SectionForm: React.FC<SectionFormProps> = ({ children }) => {
