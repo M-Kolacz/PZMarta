@@ -3,9 +3,9 @@ import { Hidden } from '@material-ui/core';
 
 import srcImg from '../images/svg/login.svg';
 
-import Image from '../shared/components/Image/Image';
-import LoginForm from '../components/LoginForm/LoginForm';
-import Navigation from '../components/Navigation/Navigation';
+import Image from '../shared/components/Image';
+import LoginForm from '../components/LoginForm';
+import Navigation from '../components/Navigation';
 
 export interface LoginPageProps {}
 

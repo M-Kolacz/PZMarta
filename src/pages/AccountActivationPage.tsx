@@ -5,7 +5,7 @@ import { useFetch } from '../shared/hooks/useFetch';
 import { loginPath } from '../shared/SSOT/paths/applicationPaths';
 import { acoountActivationApi } from '../shared/SSOT/paths/apiPaths';
 
-import LoadingSpinner from '../shared/components/LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from '../shared/components/LoadingSpinner';
 
 export interface AccountActivationPageProps {}
 

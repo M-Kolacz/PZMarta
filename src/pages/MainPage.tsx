@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Answers from '../components/Answers/Answers';
-import Navigation from '../components/Navigation/Navigation';
-import NavigationItemList from '../shared/components/NavigationItem/NavigationItemList';
+import Answers from '../components/Answers';
+import Navigation from '../components/Navigation';
+import NavigationItemList from '../shared/components/NavigationItemList';
 
 export interface MainPageProps {}
 

@@ -6,10 +6,10 @@ import { firstStepInitialValues, firstStepValidationSchema } from './Steps/First
 import { secondStepInitialValues, secondStepValidationSchema } from './Steps/SecondStep/data';
 import { thirdStepInitialValues, thirdStepValidationSchema } from './Steps/ThirdStep/data';
 
-import FirstStep from './Steps/FirstStep/FirstStep';
-import SecondStep from './Steps/SecondStep/SecondStep';
-import ThirdStep from './Steps/ThirdStep/ThirdStep';
-import { FormikStepper, FormikStep } from '../../shared/components/Form/Form';
+import FirstStep from './Steps/FirstStep';
+import SecondStep from './Steps/SecondStep';
+import ThirdStep from './Steps/ThirdStep';
+import { FormikStepper, FormikStep } from '../../shared/components/Form';
 
 import { object, string } from 'yup';
 

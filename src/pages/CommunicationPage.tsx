@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Hidden } from '@material-ui/core';
 
-import Stepper from '../shared/components/Stepper/Stepper';
-import Navigation from '../components/Navigation/Navigation';
-import CommunicationForm from '../components/CommunicationForm/CommunicationForm';
+import Stepper from '../shared/components/Stepper';
+import Navigation from '../components/Navigation';
+import CommunicationForm from '../components/CommunicationForm';
 
 export interface CommunicationPageProps {}
 

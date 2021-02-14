@@ -17,8 +17,8 @@ import {
     conditionalPoliceUnitCity,
 } from './conditionals';
 
-import { FormikStep } from '../../../../shared/components/Form/Form';
-import SectionForm from '../../../../shared/components/SectionForm/SectionForm';
+import { FormikStep } from '../../../../shared/components/Form';
+import SectionForm from '../../../../shared/components/SectionForm';
 import { RadioGroup, TextField, CheckboxWithLabel } from '../../../../shared/components/Inputs';
 
 export interface SecondStepProps extends Pick<FormikConfig<FormikValues>, 'validationSchema'> {}

@@ -14,8 +14,8 @@ import {
 
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import RegistrationPage from './pages/RegistationPage';
 import CommunicationPage from './pages/CommunicationPage';
 import AccountActivationPage from './pages/AccountActivationPage';

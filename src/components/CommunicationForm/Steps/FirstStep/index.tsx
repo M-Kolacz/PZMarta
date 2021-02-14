@@ -15,8 +15,8 @@ import { policyOwnerOptions, damageOptions, personDeathOptions, ownerOptions } f
 
 import { Event } from '../../../../shared/interfaces/event';
 
-import { FormikStep } from '../../../../shared/components/Form/Form';
-import SectionForm from '../../../../shared/components/SectionForm/SectionForm';
+import { FormikStep } from '../../../../shared/components/Form';
+import SectionForm from '../../../../shared/components/SectionForm';
 import {
     DatePicker,
     TimePicker,

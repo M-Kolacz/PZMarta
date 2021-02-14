@@ -4,7 +4,7 @@ import { Grid, Typography, Hidden, Button } from '@material-ui/core';
 
 import { loginPath } from '../../shared/SSOT/paths/applicationPaths';
 
-import Logo from '../../shared/components/Logo/Logo';
+import Logo from '../../shared/components/Logo';
 
 import useStyles from './HeaderStyles';
 

@@ -9,9 +9,9 @@ import { registrationApi } from '../../shared/SSOT/paths/apiPaths';
 import { loginPath } from '../../shared/SSOT/paths/applicationPaths';
 import { fieldsData, initialValues, validationSchema } from './data';
 
-import Snackbar from '../../shared/components/Snackbar/Snackbar';
+import Snackbar from '../../shared/components/Snackbar';
 import { TextField } from '../../shared/components/Inputs';
-import LoadingSpinner from '../../shared/components/LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from '../../shared/components/LoadingSpinner';
 
 import useStyles from './RegistrationFormStyles';
 

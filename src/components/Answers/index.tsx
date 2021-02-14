@@ -5,8 +5,8 @@ import happyClientSrc from '../../images/jpg/happyClient2.jpg';
 import happyClientSrc2 from '../../images/jpg/happyClient.jpg';
 import { leftSide, rightSide } from '../../shared/SSOT/pageContent/copmanyAdvice';
 
-import Image from '../../shared/components/Image/Image';
-import Accordion from '../../shared/components/Accordion/Accordion';
+import Image from '../../shared/components/Image';
+import Accordion from '../../shared/components/Accordion';
 
 import useStyles from './AnswersStyles';
 

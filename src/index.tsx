@@ -11,7 +11,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import theme from './theme/theme';
+import theme from './theme';
 import plLocale from 'date-fns/locale/pl';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiThemeProvider } from '@material-ui/core';

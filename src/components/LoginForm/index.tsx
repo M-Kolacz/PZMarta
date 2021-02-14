@@ -10,7 +10,7 @@ import { fieldsData, initialValues, validationSchema } from './data';
 import { registrationPath } from '../../shared/SSOT/paths/applicationPaths';
 
 import { TextField } from '../../shared/components/Inputs';
-import LoadingSpinner from '../../shared/components/LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from '../../shared/components/LoadingSpinner';
 
 import useStyles from './LoginFormStyles';
 

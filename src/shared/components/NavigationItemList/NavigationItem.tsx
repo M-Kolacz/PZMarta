@@ -4,7 +4,7 @@ import { SvgIconProps } from '@material-ui/core/SvgIcon';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Grid, Typography, Accordion, AccordionDetails, AccordionSummary } from '@material-ui/core';
 
-import Button from '../Button/Button';
+import Button from '../Button';
 
 import useStyles from './NavigationItemStyles';
 
