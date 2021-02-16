@@ -16,4 +16,9 @@ export const passwordValidation = Yup.string().required(requiredField).matches(p
     message: passwordField,
 });
 
+export const confirmField = (field: string, message: string) =>
+    Yup.string()
+        .required(requiredField)
+        .oneOf([Yup.ref(field), null], message);
+
 export const booleanValidation = Yup.boolean();
