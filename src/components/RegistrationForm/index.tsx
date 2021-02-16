@@ -1,15 +1,24 @@
+import axios, { AxiosError } from 'axios';
 import { Formik, Form } from 'formik';
 import React, { useState } from 'react';
+import { useMutation } from 'react-query';
 import { Link as RouterLink } from 'react-router-dom';
-import { Button, Grid, Link, Typography } from '@material-ui/core';
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    Grid,
+    Link,
+    Typography,
+} from '@material-ui/core';
 
-import { useFetch } from '../../shared/hooks/useFetch';
-import { confirmEmail } from '../../shared/SSOT/pageContent/snackbars';
-import { registrationApi } from '../../shared/SSOT/paths/apiPaths';
+import { registrationApi, resendVerificationApi } from '../../shared/SSOT/paths/apiPaths';
 import { loginPath } from '../../shared/SSOT/paths/applicationPaths';
-import { fieldsData, initialValues, validationSchema } from './data';
+import { fieldsData, initialValues, validationSchema, LoginFormInterface } from './data';
 
-import Snackbar from '../../shared/components/Snackbar';
 import { TextField } from '../../shared/components/Inputs';
 import LoadingSpinner from '../../shared/components/LoadingSpinner';
 
@@ -19,15 +28,41 @@ export interface RegistationFormProps {}
 
 const { email, password } = fieldsData;
 
+const postRegistration = async (userData: LoginFormInterface) => {
+    const { data } = await axios.post<{ userId: number }>(registrationApi, userData);
+    return data;
+};
+const postResendVerification = async (email: string) => {
+    const { data } = await axios.post<{ message: string }>(resendVerificationApi, { email });
+    return data;
+};
+
 const RegistationForm: React.FC<RegistationFormProps> = () => {
     const classes = useStyles();
-
     const [open, setOpen] = useState(false);
 
-    const { sendRequest, clearError, error, isLoading } = useFetch();
+    const registerMutation = useMutation<
+        {},
+        AxiosError<{ message: string }>,
+        LoginFormInterface,
+        { tcontext: string }
+    >(postRegistration, {
+        mutationKey: 'register',
+        onSuccess: () => {
+            setOpen(true);
+        },
+    });
+
+    const resendMutation = useMutation(postResendVerification, {
+        mutationKey: 'resendVerification',
+    });
 
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const handleResendVerification = (email: string) => {
+        resendMutation.mutate(email);
     };
 
     return (
@@ -36,44 +71,25 @@ const RegistationForm: React.FC<RegistationFormProps> = () => {
             validationSchema={validationSchema}
             onSubmit={async (values, actions) => {
                 actions.validateForm();
-                clearError();
-
-                const response = await sendRequest(registrationApi, 'POST', values).catch(
-                    (error) => {
-                        actions.setErrors({ [email.name]: true, [password.name]: true });
-                        return null;
-                    },
-                );
-                if (response) {
-                    setOpen(true);
-                }
+                registerMutation.mutate(values);
             }}
         >
-            {({ handleBlur }) => (
+            {({ values }) => (
                 <>
                     <Grid item xs={12} md={6} className={classes.RegistrationFormContainer}>
-                        <Form className={classes.Form}>
+                        <Form
+                            className={classes.Form}
+                            onChange={() => {
+                                registerMutation.reset();
+                            }}
+                        >
                             <Grid container spacing={2}>
-                                <TextField
-                                    {...email}
-                                    textFieldGrid={{ xs: 12 }}
-                                    onBlur={(e) => {
-                                        handleBlur(e);
-                                        clearError();
-                                    }}
-                                />
-                                <TextField
-                                    {...password}
-                                    textFieldGrid={{ xs: 12 }}
-                                    onBlur={(e) => {
-                                        handleBlur(e);
-                                        clearError();
-                                    }}
-                                />
-                                {error && (
+                                <TextField {...email} textFieldGrid={{ xs: 12 }} />
+                                <TextField {...password} textFieldGrid={{ xs: 12 }} />
+                                {registerMutation.error && (
                                     <Grid item xs={12} className={classes.ErrorContainer}>
                                         <Typography className={classes.Error}>
-                                            {error.message}
+                                            {registerMutation.error.response?.data.message}
                                         </Typography>
                                     </Grid>
                                 )}
@@ -95,13 +111,42 @@ const RegistationForm: React.FC<RegistationFormProps> = () => {
                             </Grid>
                         </Form>
                     </Grid>
-                    <LoadingSpinner open={isLoading} />
-                    <Snackbar
+                    <LoadingSpinner open={registerMutation.isLoading} />
+                    <Dialog
                         open={open}
                         onClose={handleClose}
-                        alertProps={{ severity: 'info' }}
-                        {...confirmEmail}
-                    />
+                        aria-labelledby='dialog-title'
+                        aria-describedby='dialog-description'
+                        disableBackdropClick
+                    >
+                        <DialogTitle id='dialog-title'>Weryfikacja email</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText id='dialog-description'>
+                                Dziękujemy za dołączenie! Wysłaliśmy Tobie email z instrukcją jak
+                                zweryfikować twój adres email <b>{values.email}</b>
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleClose} color='primary' variant='contained'>
+                                Zamknij
+                            </Button>
+                            <Button
+                                onClick={() => handleResendVerification(values.email)}
+                                color='primary'
+                                variant='contained'
+                            >
+                                Wyślij ponownie email
+                            </Button>
+                            <Button
+                                component={RouterLink}
+                                to={loginPath}
+                                color='primary'
+                                variant='contained'
+                            >
+                                Zaloguj się
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
                 </>
             )}
         </Formik>

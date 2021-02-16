@@ -1,12 +1,13 @@
 import { Formik, Form } from 'formik';
 import React, { useContext } from 'react';
+import axios, { AxiosError } from 'axios';
+import { useMutation } from 'react-query';
 import { Button, Grid, Link, Typography } from '@material-ui/core';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 
-import { useFetch } from '../../shared/hooks/useFetch';
 import { AuthContext } from '../../context/auth-context';
 import { loginApi } from '../../shared/SSOT/paths/apiPaths';
-import { fieldsData, initialValues, validationSchema } from './data';
+import { fieldsData, initialValues, validationSchema, LoginFormInterface } from './data';
 import { registrationPath } from '../../shared/SSOT/paths/applicationPaths';
 
 import { TextField } from '../../shared/components/Inputs';
@@ -18,27 +19,40 @@ export interface LoginFormProps {}
 
 const { email, password } = fieldsData;
 
+const sendLogin = async (userData: LoginFormInterface) => {
+    console.log(userData);
+    const { data } = await axios.post<{ userId: string; email: string; token: string }>(
+        loginApi,
+        userData,
+    );
+    return data;
+};
+
 const LoginForm: React.FC<LoginFormProps> = () => {
     const classes = useStyles();
     const history = useHistory();
 
     const { login } = useContext(AuthContext);
 
-    const { sendRequest, clearError, error, isLoading } = useFetch();
+    const loginMutate = useMutation<
+        { userId: string; email: string; token: string },
+        AxiosError<{ message: string }>,
+        LoginFormInterface,
+        { tcontext: string }
+    >(sendLogin, {
+        mutationKey: 'login',
+        onSuccess: (data) => {
+            login(data.token as any, null, data.userId!);
+            history.push('/');
+        },
+    });
 
     return (
         <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={async (values, actions) => {
-                actions.validateForm();
-                try {
-                    const response = await sendRequest(loginApi, 'POST', values);
-                    login(response.token as any, null, response.userId);
-                    history.push('/');
-                } catch (error) {
-                    actions.setErrors({ [email.name]: true, [password.name]: true });
-                }
+                loginMutate.mutate(values);
             }}
         >
             {({ handleBlur }) => (
@@ -47,30 +61,16 @@ const LoginForm: React.FC<LoginFormProps> = () => {
                         <Form
                             className={classes.Form}
                             onChange={() => {
-                                clearError();
+                                loginMutate.reset();
                             }}
                         >
                             <Grid container spacing={2}>
-                                <TextField
-                                    {...email}
-                                    textFieldGrid={{ xs: 12 }}
-                                    onBlur={(e) => {
-                                        handleBlur(e);
-                                        clearError();
-                                    }}
-                                />
-                                <TextField
-                                    {...password}
-                                    textFieldGrid={{ xs: 12 }}
-                                    onBlur={(e) => {
-                                        handleBlur(e);
-                                        clearError();
-                                    }}
-                                />
-                                {error && (
+                                <TextField {...email} textFieldGrid={{ xs: 12 }} />
+                                <TextField {...password} textFieldGrid={{ xs: 12 }} />
+                                {loginMutate.isError && (
                                     <Grid item xs={12} className={classes.ErrorContainer}>
                                         <Typography className={classes.Error}>
-                                            Podany login lub hasło są nieprawidłowe.
+                                            {loginMutate.error?.response?.data.message}
                                         </Typography>
                                     </Grid>
                                 )}
@@ -87,7 +87,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
                             </Grid>
                         </Form>
                     </Grid>
-                    <LoadingSpinner open={isLoading} />
+                    <LoadingSpinner open={loginMutate.isLoading} />
                 </>
             )}
         </Formik>
