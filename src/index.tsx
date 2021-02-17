@@ -1,11 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Provider } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
-import { exampleReducer } from './store/reducers/example';
-import { composeWithDevTools } from 'redux-devtools-extension';
-
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import { ReactQueryDevtools } from 'react-query/devtools';
@@ -20,24 +15,19 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const rootReducer = combineReducers({ exampleReducer });
-
-const store = createStore(rootReducer, composeWithDevTools());
-
 const queryClient = new QueryClient();
 
 ReactDOM.render(
     <React.StrictMode>
         <QueryClientProvider client={queryClient}>
-            <Provider store={store}>
-                <Router>
-                    <MuiThemeProvider theme={theme}>
-                        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={plLocale}>
-                            <App />
-                        </MuiPickersUtilsProvider>
-                    </MuiThemeProvider>
-                </Router>
-            </Provider>
+            <Router>
+                <MuiThemeProvider theme={theme}>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={plLocale}>
+                        <App />
+                    </MuiPickersUtilsProvider>
+                </MuiThemeProvider>
+            </Router>
+
             <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
     </React.StrictMode>,
