@@ -12,13 +12,15 @@ import {
     accountActivationPath,
 } from './shared/SSOT/paths/applicationPaths';
 
-import MainPage from './pages/MainPage';
-import LoginPage from './pages/LoginPage';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import RegistrationPage from './pages/RegistationPage';
-import CommunicationPage from './pages/CommunicationPage';
-import AccountActivationPage from './pages/AccountActivationPage';
+import Header from './shared/components/ApplicationElements/Header';
+import Footer from './shared/components/ApplicationElements/Footer';
+import {
+    MainPage,
+    LoginPage,
+    RegistrationPage,
+    CommunicationPage,
+    AccountActivationPage,
+} from './components';
 
 import useStyles from './AppStyles';
 
