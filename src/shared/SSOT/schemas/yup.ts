@@ -12,6 +12,8 @@ export const objectValidation = Yup.object().required(requiredField).nullable();
 
 export const emailValidation = Yup.string().trim().required(requiredField).email(emailField);
 
+export const booleanValidation = Yup.boolean();
+
 export const passwordValidation = Yup.string()
     .trim()
     .required(requiredField)
@@ -24,5 +26,3 @@ export const confirmField = (field: string, message: string) =>
         .trim()
         .required(requiredField)
         .oneOf([Yup.ref(field), null], message);
-
-export const booleanValidation = Yup.boolean();
