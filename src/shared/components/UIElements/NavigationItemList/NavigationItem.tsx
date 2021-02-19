@@ -55,13 +55,7 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
                         ))}
                     </ul>
 
-                    <Button
-                        color='secondary'
-                        variant='contained'
-                        className={classes.Button}
-                        component={Link}
-                        to={link}
-                    >
+                    <Button color='secondary' variant='contained' component={Link} to={link}>
                         Otwórz formularz
                     </Button>
                 </AccordionDetails>
