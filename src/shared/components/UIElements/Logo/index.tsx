@@ -14,12 +14,12 @@ export interface LogoProps {
 export const Logo: React.FC<LogoProps> = ({ logoSrc, className, alt }) => {
     const classes = useStyles();
     return (
-        <h1 className={classes.LogoContainer}>
+        <h1 className={className}>
             <Link to='/'>
                 <img
                     src={logoSrc || defaultLogoSrc}
-                    alt={alt || 'Company logo'}
-                    className={className}
+                    alt={alt || 'Logo firmy'}
+                    className={classes.Logo}
                 />
             </Link>
         </h1>

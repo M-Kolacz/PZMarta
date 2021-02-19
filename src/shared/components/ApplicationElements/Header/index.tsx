@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { Grid, Typography, Hidden, Button } from '@material-ui/core';
+import { Grid, Box, Typography, Hidden, Button } from '@material-ui/core';
 
 import { loginPath } from '../../../SSOT/paths/applicationPaths';
 
@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = () => {
         >
             <Logo className={classes.Logo} />
 
-            <Grid className={classes.ComunicationContainer}>
+            <Box className={classes.ComunicationContainer}>
                 <Button
                     component={RouterLink}
                     to={loginPath}
@@ -37,14 +37,14 @@ const Header: React.FC<HeaderProps> = () => {
                 </Button>
 
                 <Hidden xsDown>
-                    <Grid className={classes.ContactContainer} component='address'>
-                        <Typography className={classes.ContactText}>
+                    <Box className={classes.ContactContainer} component='address'>
+                        <Typography className={classes.ContactText} variant='body2'>
                             Masz pytania? Zadzwoń
                         </Typography>
-                        <Typography>728 886 453</Typography>
-                    </Grid>
+                        <Typography variant='body1'>728 886 453</Typography>
+                    </Box>
                 </Hidden>
-            </Grid>
+            </Box>
         </Grid>
     );
 };

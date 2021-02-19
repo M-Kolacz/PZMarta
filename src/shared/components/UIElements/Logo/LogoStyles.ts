@@ -1,9 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-    LogoContainer: {
-        fontSize: '0px',
-        paddingLeft: '10px',
+    Logo: {
+        maxWidth: '160px',
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            maxWidth: '200px',
+        },
     },
 }));
 
