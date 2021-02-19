@@ -11,7 +11,7 @@ export const Navigation: React.FC<NavigationProps> = ({ navigationTitle, childre
     const classes = useStyles();
     return (
         <Grid container item className={classes.NotificationContainer} component='nav'>
-            <Typography variant='h3' className={classes.NotificationTitle}>
+            <Typography variant='h2' className={classes.NotificationTitle}>
                 {navigationTitle}
             </Typography>
             {children}
