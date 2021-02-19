@@ -1,13 +1,13 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ spacing, palette }) => ({
     SectionTitle: {
         width: '100%',
-        margin: theme.spacing(1.25, 'auto'),
-        padding: theme.spacing(1, 0),
-        borderBottom: `1px solid ${theme.palette.primary.main}`,
+        margin: spacing(1.25, 'auto'),
+        padding: spacing(1, 0),
+        borderBottom: `1px solid ${palette.primary.main}`,
         letterSpacing: '1px',
-        color: theme.palette.primary.main,
+        color: palette.primary.main,
         textTransform: 'uppercase',
     },
 }));

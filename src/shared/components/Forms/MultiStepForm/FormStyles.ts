@@ -1,15 +1,15 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ spacing }) => ({
     FormikForm: {
         width: '100%',
-        margin: theme.spacing(0, 3),
+        margin: spacing(0, 3),
     },
     FormFooter: {
         textAlign: 'right',
     },
     FormButton: {
-        marginRight: theme.spacing(1.25),
+        marginRight: spacing(1.25),
     },
 }));
 

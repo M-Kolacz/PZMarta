@@ -1,14 +1,14 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ spacing, palette, breakpoints }) => ({
     AnswersTitle: {
-        margin: theme.spacing(1.25, 0, 2.5),
+        margin: spacing(1.25, 0, 2.5),
         width: '100%',
         textAlign: 'center',
-        color: theme.palette.grey[600],
+        color: palette.grey[600],
     },
     AccordeonOrder: {
-        [theme.breakpoints.up('md')]: {
+        [breakpoints.up('md')]: {
             order: 2,
         },
     },

@@ -1,38 +1,38 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ spacing, breakpoints, palette }) => ({
     NavigationContainer: {
-        margin: theme.spacing(1.5, 0),
+        margin: spacing(1.5, 0),
     },
     Logo: {
         fontSize: '0px',
-        paddingLeft: theme.spacing(1.25),
+        paddingLeft: spacing(1.25),
     },
 
     ComunicationContainer: {
         display: 'flex',
         justifyContent: 'center',
-        paddingRight: theme.spacing(1.25),
-        [theme.breakpoints.up('sm')]: {
+        paddingRight: spacing(1.25),
+        [breakpoints.up('sm')]: {
             justifyContent: 'flex-end',
         },
     },
 
     Button: {
-        marginRight: theme.spacing(1.25),
+        marginRight: spacing(1.25),
     },
 
     ContactContainer: {
         textAlign: 'right',
-        [theme.breakpoints.up('sm')]: {
-            paddingLeft: theme.spacing(1.25),
-            paddingRight: theme.spacing(1.25),
-            borderLeft: `1px solid ${theme.palette.grey[800]}`,
+        [breakpoints.up('sm')]: {
+            paddingLeft: spacing(1.25),
+            paddingRight: spacing(1.25),
+            borderLeft: `1px solid ${palette.grey[800]}`,
         },
     },
 
     ContactText: {
-        color: theme.palette.grey[600],
+        color: palette.grey[600],
     },
 }));
 

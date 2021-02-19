@@ -1,10 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints }) => ({
     Logo: {
         maxWidth: '160px',
         width: '100%',
-        [theme.breakpoints.up('sm')]: {
+        [breakpoints.up('sm')]: {
             maxWidth: '200px',
         },
     },

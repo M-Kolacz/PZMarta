@@ -1,8 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ zIndex }) => ({
     backdrop: {
-        zIndex: theme.zIndex.drawer + 1,
+        zIndex: zIndex.drawer + 1,
         color: '#fff',
     },
 }));

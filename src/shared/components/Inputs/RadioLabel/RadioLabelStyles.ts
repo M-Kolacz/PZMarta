@@ -1,18 +1,18 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints, palette }) => ({
     LabelGrid: {
         display: 'flex',
         alignItems: 'center',
         flexWrap: 'wrap',
         position: 'relative',
         marginBottom: '15px',
-        [theme.breakpoints.up('md')]: {
+        [breakpoints.up('md')]: {
             marginBottom: 0,
         },
     },
     LabelTitle: {
-        color: theme.palette.primary.main,
+        color: palette.primary.main,
         width: '100%',
     },
     HelperText: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
         fontSize: '13px',
         color: 'red',
-        [theme.breakpoints.up('md')]: {
+        [breakpoints.up('md')]: {
             bottom: '-15px',
         },
     },

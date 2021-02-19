@@ -1,18 +1,18 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ spacing, palette }) => ({
     NotificationItems: {
         margin: '0',
     },
 
     Container: {
-        padding: theme.spacing(0.125),
-        border: `3px solid ${theme.palette.common.white}`,
+        padding: spacing(0.125),
+        border: `3px solid ${palette.common.white}`,
         '&:hover': {
-            border: `3px solid ${theme.palette.secondary.main}`,
+            border: `3px solid ${palette.secondary.main}`,
         },
         '&:focus': {
-            border: `3px solid ${theme.palette.secondary.main}`,
+            border: `3px solid ${palette.secondary.main}`,
         },
     },
     SummaryContainer: {
@@ -21,13 +21,13 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
     },
     SummaryIcon: {
-        paddingRight: theme.spacing(1.25),
+        paddingRight: spacing(1.25),
     },
     DetailsContainer: {
         flexDirection: 'column',
     },
     ExpandIcon: {
-        color: theme.palette.secondary.main,
+        color: palette.secondary.main,
     },
 }));
 

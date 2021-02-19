@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ palette }) => ({
     LabelGrid: {
         display: 'flex',
         alignItems: 'center',
@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
     },
     LabelTitle: {
-        color: theme.palette.primary.main,
+        color: palette.primary.main,
         width: '100%',
     },
     HelperText: {
