@@ -1,13 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 import { useQuery } from 'react-query';
-import { Button } from '@material-ui/core';
+import { Button, Grid, Typography } from '@material-ui/core';
 import { useParams, Link as RouterLink } from 'react-router-dom';
 
-import { loginPath } from '../../shared/SSOT/paths/applicationPaths';
 import { acoountActivationApi } from '../../shared/SSOT/paths/apiPaths';
 
-import { LoadingSpinner } from '../../shared/components/UIElements';
+import { LoadingSpinner, Navigation } from '../../shared/components/UIElements';
 
 export interface AccountActivationPageProps {}
 
@@ -30,12 +29,18 @@ export const AccountActivationPage: React.FC<AccountActivationPageProps> = () =>
 
     return (
         <>
-            <h1>Weryfikacja email</h1>
-            {accountActivation.data?.message && (
-                <Button component={RouterLink} to={loginPath} variant='contained' color='primary'>
-                    Zaloguj się
+            <Navigation navigationTitle='Weryfikacja email' />
+            <Grid item xs={12} component='main'>
+                <Typography variant='h4' color='textPrimary'>
+                    Weryfikacja email udała się !
+                </Typography>
+                <Typography variant='body1' color='textPrimary'>
+                    Aby przejść do swojego konta kliknij w poniższy przycisk.
+                </Typography>
+                <Button component={RouterLink} to='/' variant='contained' color='secondary'>
+                    Przejdź do swojego konta
                 </Button>
-            )}
+            </Grid>
             <LoadingSpinner open={accountActivation.isLoading} />
         </>
     );
