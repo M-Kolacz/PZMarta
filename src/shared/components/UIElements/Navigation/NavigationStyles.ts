@@ -2,18 +2,15 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     NotificationContainer: {
-        marginTop: '10px',
+        marginTop: theme.spacing(1.25),
+        paddingBottom: theme.spacing(1.25),
         backgroundColor: theme.palette.primary.main,
-        paddingBottom: '10px',
     },
     NotificationTitle: {
-        marginTop: '10px',
-        marginBottom: '20px',
+        margin: theme.spacing(1.25, 'auto', 2.5),
         textAlign: 'center',
-        color: theme.palette.brokenWhite!.main,
-        fontSize: '42px',
         letterSpacing: '1px',
-        width: '100%',
+        color: theme.palette.brokenWhite!.main,
     },
 }));
 
