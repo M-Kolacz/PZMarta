@@ -9,6 +9,8 @@ import { Grid, TextField } from '@material-ui/core';
 import { GridProps } from '../../../interfaces/MaterialUI';
 import Label, { LabelProps } from '../Label/Label';
 
+import useStyles from './AutocompleteStyles';
+
 export interface AutocompleteProps extends LabelProps {
     name: string;
     conditionalOptions: any;
@@ -28,6 +30,8 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
     error,
     touched,
 }) => {
+    const classes = useStyles();
+
     const [open, setOpen] = useState(false);
     const [options, setOptions] = useState([] as { title: string }[]);
 
@@ -72,7 +76,6 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
                         if (!option.label) return '';
                         else return option.label;
                     }}
-                    style={{ width: '100%' }}
                     open={open}
                     onOpen={() => {
                         setOpen(true);
@@ -92,6 +95,7 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
                             error={touched && !!error}
                         />
                     )}
+                    className={classes.Autocomplete}
                 />
             </Grid>
         </>

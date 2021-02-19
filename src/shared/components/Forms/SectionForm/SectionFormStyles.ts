@@ -3,14 +3,12 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
     SectionTitle: {
         width: '100%',
-        fontSize: '21px',
-        textTransform: 'uppercase',
-        letterSpacing: '0.5px',
-        paddingBottom: '5px',
-        paddingTop: '10px',
+        margin: theme.spacing(1.25, 'auto'),
+        padding: theme.spacing(1, 0),
         borderBottom: `1px solid ${theme.palette.primary.main}`,
-        margin: '10px auto',
+        letterSpacing: '1px',
         color: theme.palette.primary.main,
+        textTransform: 'uppercase',
     },
 }));
 

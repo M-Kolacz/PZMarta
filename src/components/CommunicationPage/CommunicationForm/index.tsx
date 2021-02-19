@@ -1,6 +1,4 @@
 import React from 'react';
-import { Field } from 'formik';
-import { TextField } from 'formik-material-ui';
 
 import { firstStepInitialValues, firstStepValidationSchema } from './Steps/FirstStep/data';
 import { secondStepInitialValues, secondStepValidationSchema } from './Steps/SecondStep/data';
@@ -9,9 +7,7 @@ import { thirdStepInitialValues, thirdStepValidationSchema } from './Steps/Third
 import FirstStep from './Steps/FirstStep';
 import SecondStep from './Steps/SecondStep';
 import ThirdStep from './Steps/ThirdStep';
-import { FormikStepper, FormikStep } from '../../../shared/components/Forms/MultiStepForm';
-
-import { object, string } from 'yup';
+import { FormikStepper } from '../../../shared/components/Forms/MultiStepForm';
 
 export interface FormProps {
     handleBack: () => void;
@@ -33,20 +29,6 @@ const Form: React.FC<FormProps> = ({ handleBack, handleNext }) => {
             <FirstStep validationSchema={firstStepValidationSchema} />
             <SecondStep validationSchema={secondStepValidationSchema} />
             <ThirdStep validationSchema={thirdStepValidationSchema} />
-            <FormikStep
-                validationSchema={object({
-                    lastName: string().required('Wymagany'),
-                })}
-            >
-                <Field name='lastName' component={TextField} label='Last name' />
-            </FormikStep>
-            <FormikStep
-                validationSchema={object({
-                    overName: string().required('Wymagany'),
-                })}
-            >
-                <Field name='overName' component={TextField} label='overName' />
-            </FormikStep>
         </FormikStepper>
     );
 };

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Formik, Form as FormikForm, FormikConfig, FormikValues } from 'formik';
 import { Button, Grid } from '@material-ui/core';
 
+import useStyles from './FormStyles';
+
 export interface FormikStepProps
     extends Pick<FormikConfig<FormikValues>, 'children' | 'validationSchema'> {}
 
@@ -20,6 +22,8 @@ export const FormikStepper = ({
     handleNext,
     ...props
 }: FormikStepperProps) => {
+    const classes = useStyles();
+
     const childrenArray = React.Children.toArray(children) as React.ReactElement<FormikStepProps>[];
     const [step, setStep] = useState(0);
     const currentChild = childrenArray[step] as React.ReactElement<FormikStepProps>;
@@ -41,10 +45,10 @@ export const FormikStepper = ({
                 }
             }}
         >
-            <FormikForm autoComplete='off' style={{ width: '94%', margin: '0 auto' }}>
+            <FormikForm autoComplete='off' className={classes.FormikForm}>
                 <Grid container spacing={2}>
                     {currentChild}
-                    <Grid item xs={12} style={{ textAlign: 'right' }}>
+                    <Grid item xs={12} className={classes.FormFooter}>
                         <Button
                             onClick={() => {
                                 setStep((s) => s - 1);
@@ -52,8 +56,8 @@ export const FormikStepper = ({
                             }}
                             disabled={step === 0}
                             variant='contained'
-                            style={{ marginRight: '10px' }}
                             color='secondary'
+                            className={classes.FormButton}
                         >
                             Back
                         </Button>
