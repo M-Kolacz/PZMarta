@@ -42,7 +42,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
     >(sendLogin, {
         mutationKey: 'login',
         onSuccess: (data) => {
-            login(data.token as any, null, data.userId!);
+            login(data.token, null, data.userId!);
             history.push('/');
         },
     });
