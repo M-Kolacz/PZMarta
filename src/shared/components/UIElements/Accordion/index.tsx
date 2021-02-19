@@ -26,7 +26,7 @@ export const Accordion: React.FC<AccordionProps> = ({ accordion, ...containerPro
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon className={classes.ExpandIcon} />}
                     >
-                        <Typography variant='h3' style={{ fontSize: '16px' }}>
+                        <Typography variant='h6' component='h3'>
                             {title}
                         </Typography>
                     </AccordionSummary>

@@ -15,7 +15,7 @@ const Answers: React.FC<AnswersProps> = () => {
     const classes = useStyles();
     return (
         <Grid container item xs={12} component='main'>
-            <Typography variant='h2' className={classes.AnswersTitle}>
+            <Typography variant='h3' component='h2' className={classes.AnswersTitle}>
                 Pytania i odpowiedzi
             </Typography>
 
