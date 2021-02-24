@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useMutation } from 'react-query';
 import { Link as RouterLink } from 'react-router-dom';
@@ -17,6 +17,10 @@ import { LoginFormInterface } from '../RegistrationForm/data';
 import { loginPath } from '../../../shared/SSOT/paths/applicationPaths';
 import { resendVerificationApi } from '../../../shared/SSOT/paths/apiPaths';
 
+import { Snackbar } from '../../../shared/components/UIElements';
+
+import useStyles from './RegistrationDialogStyles';
+
 const postResendVerification = async (email: string) => {
     const { data } = await axios.post<{ message: string }>(resendVerificationApi, { email });
     return data;
@@ -29,51 +33,81 @@ export interface RegistrationDialogProps {
 }
 
 const RegistrationDialog: React.FC<RegistrationDialogProps> = ({ open, handleClose, values }) => {
+    const classes = useStyles();
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+
     const resendMutation = useMutation(postResendVerification, {
         mutationKey: 'resendVerification',
+        onSuccess: () => {
+            setOpenSnackbar(true);
+        },
     });
+
+    const hadnleCloseSnackbar = () => {
+        setOpenSnackbar(false);
+    };
 
     const handleResendVerification = (email: string) => {
         resendMutation.mutate(values.email);
     };
 
-    let buttonIcon = <EmailIcon />;
+    let resendIcon = <EmailIcon />;
     if (resendMutation.isLoading) {
-        buttonIcon = <CircularProgress color='secondary' size={20} />;
+        resendIcon = <CircularProgress color='secondary' size={20} />;
     }
 
     return (
-        <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby='dialog-title'
-            aria-describedby='dialog-description'
-            disableBackdropClick
-        >
-            <DialogTitle id='dialog-title'>Weryfikacja email</DialogTitle>
-            <DialogContent>
-                <DialogContentText id='dialog-description'>
-                    Dziękujemy za dołączenie! Wysłaliśmy Tobie email z instrukcją jak zweryfikować
-                    twój adres email <b>{values.email}</b>
-                </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={handleClose} color='primary' variant='contained'>
-                    Zamknij
-                </Button>
-                <Button
-                    onClick={() => handleResendVerification(values.email)}
-                    color='primary'
-                    variant='contained'
-                    endIcon={buttonIcon}
-                >
-                    Wyślij ponownie email
-                </Button>
-                <Button component={RouterLink} to={loginPath} color='primary' variant='contained'>
-                    Zaloguj się
-                </Button>
-            </DialogActions>
-        </Dialog>
+        <>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby='dialog-title'
+                aria-describedby='dialog-description'
+                disableBackdropClick
+            >
+                <DialogTitle id='dialog-title'>Weryfikacja email</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id='dialog-description'>
+                        Dziękujemy za dołączenie! Wysłaliśmy Tobie email z instrukcją jak
+                        zweryfikować twój adres email <b>{values.email}</b>
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions className={classes.DialogActions}>
+                    <Button
+                        onClick={handleClose}
+                        color='primary'
+                        variant='contained'
+                        className={classes.ActionButton}
+                    >
+                        Zamknij
+                    </Button>
+                    <Button
+                        onClick={() => handleResendVerification(values.email)}
+                        color='primary'
+                        variant='contained'
+                        endIcon={resendIcon}
+                        className={classes.ActionButton}
+                    >
+                        Wyślij ponownie email
+                    </Button>
+                    <Button
+                        component={RouterLink}
+                        to={loginPath}
+                        color='primary'
+                        variant='contained'
+                        className={classes.ActionButton}
+                    >
+                        Zaloguj się
+                    </Button>
+                </DialogActions>
+            </Dialog>
+            <Snackbar
+                open={openSnackbar}
+                onClose={hadnleCloseSnackbar}
+                title='Wysłano ponownie email'
+                description='Email z weryfikacją został ponownie wysłany'
+            />
+        </>
     );
 };
 

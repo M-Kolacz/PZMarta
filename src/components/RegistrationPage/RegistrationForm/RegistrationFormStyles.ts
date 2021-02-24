@@ -6,7 +6,7 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
     },
     Form: {
         width: '100%',
-        margin: spacing(1.25, 'auto'),
+        padding: spacing(1.25, 2),
     },
     ErrorContainer: {
         textAlign: 'left',
