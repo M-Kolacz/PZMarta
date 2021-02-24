@@ -1,11 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 import { useQuery } from 'react-query';
-import { Button, Grid, Typography } from '@material-ui/core';
-import { useParams, Link as RouterLink } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { acoountActivationApi } from '../../shared/SSOT/paths/apiPaths';
 
+import ErrorMessage from './ErrorMessage';
+import SuccessMessage from './SuccessMessage';
 import { LoadingSpinner, Navigation } from '../../shared/components/UIElements';
 
 export interface AccountActivationPageProps {}
@@ -18,7 +19,10 @@ export const AccountActivationPage: React.FC<AccountActivationPageProps> = () =>
     const { token } = useParams<ActivationParam>();
 
     const sendAccountActivation = async () => {
-        const { data } = await axios.post<{ message: string }>(acoountActivationApi, { token });
+        const { data } = await axios.post<{ message: string; userId: string }>(
+            acoountActivationApi,
+            { token },
+        );
         return data;
     };
 
@@ -30,17 +34,8 @@ export const AccountActivationPage: React.FC<AccountActivationPageProps> = () =>
     return (
         <>
             <Navigation navigationTitle='Weryfikacja email' />
-            <Grid item xs={12} component='main'>
-                <Typography variant='h4' color='textPrimary'>
-                    Weryfikacja email udała się !
-                </Typography>
-                <Typography variant='body1' color='textPrimary'>
-                    Aby przejść do swojego konta kliknij w poniższy przycisk.
-                </Typography>
-                <Button component={RouterLink} to='/' variant='contained' color='secondary'>
-                    Przejdź do swojego konta
-                </Button>
-            </Grid>
+            {accountActivation.data && <SuccessMessage userId={accountActivation.data.userId} />}
+            {accountActivation.error && <ErrorMessage />}
             <LoadingSpinner open={accountActivation.isLoading} />
         </>
     );
