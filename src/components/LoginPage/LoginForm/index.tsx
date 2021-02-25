@@ -1,13 +1,11 @@
 import { Formik, Form } from 'formik';
-import React, { useContext } from 'react';
-import axios, { AxiosError } from 'axios';
-import { useMutation } from 'react-query';
+import React, { useCallback, useContext } from 'react';
 import { Button, Grid, Link, Typography } from '@material-ui/core';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 
+import { useLogin } from '../../../shared/hooks/mutation/useLogin';
 import { AuthContext } from '../../../context/auth-context';
-import { loginApi } from '../../../shared/SSOT/paths/apiPaths';
-import { fieldsData, initialValues, validationSchema, LoginFormInterface } from './data';
+import { fieldsData, initialValues, validationSchema } from './data';
 import { registrationPath } from '../../../shared/SSOT/paths/applicationPaths';
 
 import { TextField } from '../../../shared/components/Inputs';
@@ -17,16 +15,13 @@ import useStyles from './LoginFormStyles';
 
 export interface LoginFormProps {}
 
-const { email, password } = fieldsData;
+interface Response {
+    userId: string;
+    email: string;
+    token: string;
+}
 
-const sendLogin = async (userData: LoginFormInterface) => {
-    console.log(userData);
-    const { data } = await axios.post<{ userId: string; email: string; token: string }>(
-        loginApi,
-        userData,
-    );
-    return data;
-};
+const { email, password } = fieldsData;
 
 const LoginForm: React.FC<LoginFormProps> = () => {
     const classes = useStyles();
@@ -34,18 +29,15 @@ const LoginForm: React.FC<LoginFormProps> = () => {
 
     const { login } = useContext(AuthContext);
 
-    const loginMutate = useMutation<
-        { userId: string; email: string; token: string },
-        AxiosError<{ message: string }>,
-        LoginFormInterface,
-        { tcontext: string }
-    >(sendLogin, {
-        mutationKey: 'login',
-        onSuccess: (data) => {
+    const onSuccess = useCallback(
+        (data: Response) => {
             login(data.token, null, data.userId!);
             history.push('/');
         },
-    });
+        [history, login],
+    );
+
+    const loginMutate = useLogin({ onSuccess });
 
     return (
         <Formik

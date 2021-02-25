@@ -1,9 +1,7 @@
 import React from 'react';
-import axios from 'axios';
-import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 
-import { acoountActivationApi } from '../../shared/SSOT/paths/apiPaths';
+import { useAccountActivation } from '../../shared/hooks/query/useAccountActivation';
 
 import ErrorMessage from './ErrorMessage';
 import SuccessMessage from './SuccessMessage';
@@ -18,18 +16,7 @@ interface ActivationParam {
 export const AccountActivationPage: React.FC<AccountActivationPageProps> = () => {
     const { token } = useParams<ActivationParam>();
 
-    const sendAccountActivation = async () => {
-        const { data } = await axios.post<{ message: string; userId: string }>(
-            acoountActivationApi,
-            { token },
-        );
-        return data;
-    };
-
-    const accountActivation = useQuery('accountActivation', sendAccountActivation, {
-        retry: false,
-        refetchOnWindowFocus: false,
-    });
+    const accountActivation = useAccountActivation(token);
 
     return (
         <>

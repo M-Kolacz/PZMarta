@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { useMutation } from 'react-query';
 import { Link as RouterLink } from 'react-router-dom';
 import EmailIcon from '@material-ui/icons/Email';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -15,16 +13,11 @@ import {
 
 import { LoginFormInterface } from '../RegistrationForm/data';
 import { loginPath } from '../../../shared/SSOT/paths/applicationPaths';
-import { resendVerificationApi } from '../../../shared/SSOT/paths/apiPaths';
 
 import { Snackbar } from '../../../shared/components/UIElements';
 
 import useStyles from './RegistrationDialogStyles';
-
-const postResendVerification = async (email: string) => {
-    const { data } = await axios.post<{ message: string }>(resendVerificationApi, { email });
-    return data;
-};
+import { useRegister } from '../../../shared/hooks/mutation/useRegister';
 
 export interface RegistrationDialogProps {
     open: boolean;
@@ -36,8 +29,7 @@ const RegistrationDialog: React.FC<RegistrationDialogProps> = ({ open, handleClo
     const classes = useStyles();
     const [openSnackbar, setOpenSnackbar] = useState(false);
 
-    const resendMutation = useMutation(postResendVerification, {
-        mutationKey: 'resendVerification',
+    const resendMutation = useRegister({
         onSuccess: () => {
             setOpenSnackbar(true);
         },
@@ -48,7 +40,7 @@ const RegistrationDialog: React.FC<RegistrationDialogProps> = ({ open, handleClo
     };
 
     const handleResendVerification = (email: string) => {
-        resendMutation.mutate(values.email);
+        resendMutation.mutate(values);
     };
 
     let resendIcon = <EmailIcon />;

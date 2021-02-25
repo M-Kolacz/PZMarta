@@ -1,13 +1,12 @@
-import axios, { AxiosError } from 'axios';
 import { Formik, Form } from 'formik';
 import React, { useState } from 'react';
-import { useMutation } from 'react-query';
+
 import { Link as RouterLink } from 'react-router-dom';
 import { Button, Grid, Link, Typography } from '@material-ui/core';
 
-import { registrationApi } from '../../../shared/SSOT/paths/apiPaths';
+import { useRegister } from '../../../shared/hooks/mutation/useRegister';
 import { loginPath } from '../../../shared/SSOT/paths/applicationPaths';
-import { fieldsData, initialValues, validationSchema, LoginFormInterface } from './data';
+import { fieldsData, initialValues, validationSchema } from './data';
 
 import RegistrationDialog from '../RegistrationDialog';
 import { TextField } from '../../../shared/components/Inputs';
@@ -19,26 +18,11 @@ export interface RegistationFormProps {}
 
 const { email, password, confirmPassword } = fieldsData;
 
-const postRegistration = async (userData: LoginFormInterface) => {
-    const { data } = await axios.post<{ userId: number }>(registrationApi, userData);
-    return data;
-};
-
 const RegistationForm: React.FC<RegistationFormProps> = () => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
 
-    const registerMutation = useMutation<
-        {},
-        AxiosError<{ message: string }>,
-        LoginFormInterface,
-        { tcontext: string }
-    >(postRegistration, {
-        mutationKey: 'register',
-        onSuccess: () => {
-            setOpen(true);
-        },
-    });
+    const registerMutation = useRegister({ onSuccess: () => setOpen(true) });
 
     const handleClose = () => {
         setOpen(false);
