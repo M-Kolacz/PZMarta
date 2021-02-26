@@ -7,7 +7,6 @@ import { LoginFormInterface } from '../../../components/LoginPage/LoginForm/data
 
 interface Response {
     userId: string;
-    email: string;
     token: string;
 }
 interface ErrorResponse {

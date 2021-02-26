@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Button, Typography, Grid } from '@material-ui/core';
 
+import { AuthContext } from '../../../context/auth-context';
 import imageActivation from '../../../images/svg/activationEmail.svg';
 
 import useStyles from './SuccessMessageStyles';
 
 export interface SuccessMessageProps {
-    userId: string;
+    userData: {
+        userId: string;
+        token: string;
+    };
 }
 
-const SuccessMessage: React.FC<SuccessMessageProps> = ({ userId }) => {
+const SuccessMessage: React.FC<SuccessMessageProps> = ({ userData }) => {
     const classes = useStyles();
+    const { token, userId } = userData;
+    const { login } = useContext(AuthContext);
+
     return (
         <Grid container item xs={12} md={6} className={classes.MessageContainer}>
             <img src={imageActivation} alt='' className={classes.EnvelopeSvg} />
@@ -27,6 +34,7 @@ const SuccessMessage: React.FC<SuccessMessageProps> = ({ userId }) => {
             <Button
                 component={RouterLink}
                 to={{ pathname: '/', state: { userId } }}
+                onClick={() => login(token, null, userId)}
                 variant='contained'
                 color='secondary'
                 fullWidth

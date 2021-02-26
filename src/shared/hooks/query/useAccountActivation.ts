@@ -5,7 +5,7 @@ import { ACCOUNT_ACTIVATION } from '../../SSOT/queryKeys';
 import { acoountActivationApi } from '../../SSOT/paths/apiPaths';
 
 interface Response {
-    message: string;
+    token: string;
     userId: string;
 }
 interface ErrorResponse {

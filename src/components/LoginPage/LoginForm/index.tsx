@@ -17,7 +17,6 @@ export interface LoginFormProps {}
 
 interface Response {
     userId: string;
-    email: string;
     token: string;
 }
 
@@ -31,7 +30,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
 
     const onSuccess = useCallback(
         (data: Response) => {
-            login(data.token, null, data.userId!);
+            login(data.token, null, data.userId);
             history.push('/');
         },
         [history, login],

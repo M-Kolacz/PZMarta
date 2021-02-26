@@ -21,7 +21,7 @@ export const AccountActivationPage: React.FC<AccountActivationPageProps> = () =>
     return (
         <>
             <Navigation navigationTitle='Weryfikacja email' />
-            {accountActivation.data && <SuccessMessage userId={accountActivation.data.userId} />}
+            {accountActivation.data && <SuccessMessage userData={accountActivation.data} />}
             {accountActivation.error && <ErrorMessage />}
             <LoadingSpinner open={accountActivation.isLoading} />
         </>
