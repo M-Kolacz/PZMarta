@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormikConfig, FormikValues, useFormikContext } from 'formik';
 
-import { fieldsData, ThirdStepForm } from './data';
+import { fieldsData, IThirdStepForm } from './data';
 
 import {
     conditionalContact,
@@ -27,11 +27,9 @@ import {
     coOwnerTypeOptions,
 } from './options';
 
-import { FormikStep } from '../../../../../shared/components/Forms/MultiStepForm';
+import { FormikStep, IFormikStep } from '../../../../../shared/components/Forms/MultiStepForm';
 import SectionForm from '../../../../../shared/components/Forms/SectionForm';
 import { RadioGroup, TextField, CheckboxWithLabel } from '../../../../../shared/components/Inputs';
-
-export interface ThirdStepProps extends Pick<FormikConfig<FormikValues>, 'validationSchema'> {}
 
 const {
     applicantAddressCode,
@@ -100,8 +98,8 @@ const {
     workshopStreet,
 } = fieldsData;
 
-const ThirdStep: React.FC<ThirdStepProps> = () => {
-    const { values, errors, touched } = useFormikContext<ThirdStepForm>();
+const ThirdStep: React.FC<IFormikStep> = () => {
+    const { values, errors, touched } = useFormikContext<IThirdStepForm>();
     return (
         <FormikStep>
             <RadioGroup

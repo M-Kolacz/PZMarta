@@ -4,9 +4,8 @@ import {
     Autocomplete as MUIAutocomplete,
     AutocompleteRenderInputParams,
 } from 'formik-material-ui-lab';
-import { Grid, TextField } from '@material-ui/core';
+import { Grid, TextField, GridProps } from '@material-ui/core';
 
-import { GridProps } from '../../../interfaces/MaterialUI';
 import Label, { LabelProps } from '../Label/Label';
 
 import useStyles from './AutocompleteStyles';

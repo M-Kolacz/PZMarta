@@ -7,14 +7,12 @@ import ErrorMessage from './ErrorMessage';
 import SuccessMessage from './SuccessMessage';
 import { LoadingSpinner, Navigation } from '../../shared/components/UIElements';
 
+import { IActivationParam } from '../../shared/ts/interfaces';
+
 export interface AccountActivationPageProps {}
 
-interface ActivationParam {
-    token: string;
-}
-
 export const AccountActivationPage: React.FC<AccountActivationPageProps> = () => {
-    const { token } = useParams<ActivationParam>();
+    const { token } = useParams<IActivationParam>();
 
     const accountActivation = useAccountActivation(token);
 

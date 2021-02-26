@@ -2,13 +2,12 @@ import React from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
     Grid,
+    GridProps,
     Accordion as MUIAccordion,
     AccordionSummary,
     AccordionDetails,
     Typography,
 } from '@material-ui/core';
-
-import { GridProps } from '../../../interfaces/MaterialUI';
 
 import useStyles from './AccordionsStyles';
 

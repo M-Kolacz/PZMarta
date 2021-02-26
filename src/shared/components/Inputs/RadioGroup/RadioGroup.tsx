@@ -1,11 +1,10 @@
 import React from 'react';
 import { RadioGroup as MUIRadioGroup } from 'formik-material-ui';
 import { Field } from 'formik';
-import { FormControlLabel, Grid, Radio } from '@material-ui/core';
+import { FormControlLabel, Grid, Radio, GridProps } from '@material-ui/core';
 
-import { GridProps } from '../../../interfaces/MaterialUI';
 import RadioLabel, { RadioLabelProps } from '../RadioLabel/RadioLabel';
-import { Event } from '../../../interfaces/event';
+import { Event } from '../../../ts/types';
 
 import useStyles from './RadioGroupStyles';
 

@@ -11,18 +11,18 @@ import {
     DialogTitle,
 } from '@material-ui/core';
 
-import { LoginFormInterface } from '../RegistrationForm/data';
+import { ILogin } from '../../../shared/ts/interfaces';
 import { loginPath } from '../../../shared/SSOT/paths/applicationPaths';
+import { useRegister } from '../../../shared/hooks/mutation/useRegister';
 
 import { Snackbar } from '../../../shared/components/UIElements';
 
 import useStyles from './RegistrationDialogStyles';
-import { useRegister } from '../../../shared/hooks/mutation/useRegister';
 
 export interface RegistrationDialogProps {
     open: boolean;
     handleClose: () => void;
-    values: LoginFormInterface;
+    values: ILogin;
 }
 
 const RegistrationDialog: React.FC<RegistrationDialogProps> = ({ open, handleClose, values }) => {

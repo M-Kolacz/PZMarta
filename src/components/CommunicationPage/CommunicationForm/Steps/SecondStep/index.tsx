@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormikConfig, FormikValues, useFormikContext } from 'formik';
 
-import { fieldsData, SecondStepForm } from './data';
+import { fieldsData, ISecondStepForm } from './data';
 
 import {
     injuredPersonOptions,
@@ -17,11 +17,9 @@ import {
     conditionalPoliceUnitCity,
 } from './conditionals';
 
-import { FormikStep } from '../../../../../shared/components/Forms/MultiStepForm';
+import { FormikStep, IFormikStep } from '../../../../../shared/components/Forms/MultiStepForm';
 import SectionForm from '../../../../../shared/components/Forms/SectionForm';
 import { RadioGroup, TextField, CheckboxWithLabel } from '../../../../../shared/components/Inputs';
-
-export interface SecondStepProps extends Pick<FormikConfig<FormikValues>, 'validationSchema'> {}
 
 const {
     aboard,
@@ -40,8 +38,8 @@ const {
     street,
 } = fieldsData;
 
-const SecondStep: React.FC<SecondStepProps> = () => {
-    const { values, errors, touched } = useFormikContext<SecondStepForm>();
+const SecondStep: React.FC<IFormikStep> = () => {
+    const { values, errors, touched } = useFormikContext<ISecondStepForm>();
 
     return (
         <FormikStep>

@@ -16,7 +16,7 @@ export const initialValues = {
     [CONFIRM_PASSWORD]: '',
 };
 
-export interface LoginFormInterface {
+export interface ILoginFormInterface {
     [EMAIL]: string;
     [PASSWORD]: string;
     [CONFIRM_PASSWORD]: string;

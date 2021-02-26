@@ -3,30 +3,20 @@ import { useMutation, UseMutationOptions } from 'react-query';
 
 import { LOGIN } from '../../SSOT/queryKeys';
 import { loginApi } from '../../SSOT/paths/apiPaths';
-import { LoginFormInterface } from '../../../components/LoginPage/LoginForm/data';
 
-interface Response {
-    userId: string;
-    token: string;
-}
-interface ErrorResponse {
-    message: string;
-}
+import { IUserData, IErrorResponse, ILogin } from '../../ts/interfaces';
 
-const sendLogin = async (userData: LoginFormInterface) => {
-    const { data } = await axios.post<Response>(loginApi, userData);
+const sendLogin = async (userData: ILogin) => {
+    const { data } = await axios.post<IUserData>(loginApi, userData);
     return data;
 };
 
 export const useLogin = (
-    options: UseMutationOptions<Response, AxiosError<ErrorResponse>, LoginFormInterface>,
+    options: UseMutationOptions<IUserData, AxiosError<IErrorResponse>, ILogin>,
 ) => {
-    const useLogin = useMutation<Response, AxiosError<ErrorResponse>, LoginFormInterface>(
-        sendLogin,
-        {
-            mutationKey: LOGIN,
-            ...options,
-        },
-    );
+    const useLogin = useMutation<IUserData, AxiosError<IErrorResponse>, ILogin>(sendLogin, {
+        mutationKey: LOGIN,
+        ...options,
+    });
     return useLogin;
 };

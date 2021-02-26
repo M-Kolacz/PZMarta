@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormikConfig, FormikValues, useFormikContext } from 'formik';
 
-import { fieldsData, FirstStepForm } from './data';
+import { fieldsData, IFirstStepForm } from './data';
 import {
     conditionalReasonOptions,
     conditionalPersonDeath,
@@ -13,9 +13,9 @@ import {
 } from './conditionals';
 import { policyOwnerOptions, damageOptions, personDeathOptions, ownerOptions } from './options';
 
-import { Event } from '../../../../../shared/interfaces/event';
+import { Event } from '../../../.././../shared/ts/types';
 
-import { FormikStep } from '../../../../../shared/components/Forms/MultiStepForm';
+import { FormikStep, IFormikStep } from '../../../../../shared/components/Forms/MultiStepForm';
 import SectionForm from '../../../../../shared/components/Forms/SectionForm';
 import {
     DatePicker,
@@ -25,8 +25,6 @@ import {
     TextField,
     CheckboxWithLabel,
 } from '../../../../../shared/components/Inputs';
-
-export interface FirstStepProps extends Pick<FormikConfig<FormikValues>, 'validationSchema'> {}
 
 const {
     date,
@@ -44,8 +42,8 @@ const {
     vehicleLeasing,
 } = fieldsData;
 
-const FirstStep: React.FC<FirstStepProps> = () => {
-    const { values, errors, touched, setFieldValue } = useFormikContext<FirstStepForm>();
+const FirstStep: React.FC<IFormikStep> = () => {
+    const { values, errors, touched, setFieldValue } = useFormikContext<IFirstStepForm>();
 
     return (
         <FormikStep>

@@ -7,11 +7,10 @@ import imageActivation from '../../../images/svg/activationEmail.svg';
 
 import useStyles from './SuccessMessageStyles';
 
+import { IUserData } from '../../../shared/ts/interfaces';
+
 export interface SuccessMessageProps {
-    userData: {
-        userId: string;
-        token: string;
-    };
+    userData: IUserData;
 }
 
 const SuccessMessage: React.FC<SuccessMessageProps> = ({ userData }) => {

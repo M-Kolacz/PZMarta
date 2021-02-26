@@ -49,7 +49,7 @@ export const firstStepInitialValues = {
     [REGON]: '',
 };
 
-export interface FirstStepForm {
+export interface IFirstStepForm {
     [DATE]: Date | null;
     [TIME]: Date | null;
     [DAMAGE]: Damage;

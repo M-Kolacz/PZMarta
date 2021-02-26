@@ -1,11 +1,9 @@
 import React from 'react';
 import { Field } from 'formik';
-import { Grid } from '@material-ui/core';
+import { Grid, GridProps } from '@material-ui/core';
 import { KeyboardDatePicker, KeyboardDatePickerProps } from 'formik-material-ui-pickers';
 
 import useStyles from './DatePickerStyles';
-
-import { GridProps } from '../../../interfaces/MaterialUI';
 
 export interface DatePickerProps
     extends Omit<KeyboardDatePickerProps, 'field' | 'form' | 'meta' | 'onChange'> {

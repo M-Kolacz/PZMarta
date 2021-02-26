@@ -41,7 +41,7 @@ export const secondStepInitialValues = {
     [POLICE_UNIT]: '',
     [POLICE_CITY]: '',
 };
-export interface SecondStepForm {
+export interface ISecondStepForm {
     [CITY]: string;
     [STREET]: string;
     [APARTMENT_NUMBER]: string;

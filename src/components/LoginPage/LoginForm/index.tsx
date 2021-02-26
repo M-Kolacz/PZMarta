@@ -3,22 +3,19 @@ import React, { useCallback, useContext } from 'react';
 import { Button, Grid, Link, Typography } from '@material-ui/core';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 
-import { useLogin } from '../../../shared/hooks/mutation/useLogin';
 import { AuthContext } from '../../../context/auth-context';
+import { useLogin } from '../../../shared/hooks/mutation/useLogin';
 import { fieldsData, initialValues, validationSchema } from './data';
 import { registrationPath } from '../../../shared/SSOT/paths/applicationPaths';
 
 import { TextField } from '../../../shared/components/Inputs';
 import { LoadingSpinner } from '../../../shared/components/UIElements';
 
+import { IUserData } from '../../../shared/ts/interfaces';
+
 import useStyles from './LoginFormStyles';
 
 export interface LoginFormProps {}
-
-interface Response {
-    userId: string;
-    token: string;
-}
 
 const { email, password } = fieldsData;
 
@@ -29,7 +26,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
     const { login } = useContext(AuthContext);
 
     const onSuccess = useCallback(
-        (data: Response) => {
+        (data: IUserData) => {
             login(data.token, null, data.userId);
             history.push('/');
         },

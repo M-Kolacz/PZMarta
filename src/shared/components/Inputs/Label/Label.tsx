@@ -1,7 +1,5 @@
 import React from 'react';
-import { FormLabel, FormLabelProps, FormHelperText, Grid } from '@material-ui/core';
-
-import { GridProps } from '../../../interfaces/MaterialUI';
+import { FormLabel, FormLabelProps, FormHelperText, Grid, GridProps } from '@material-ui/core';
 
 import useStyles from './LabelStyles';
 

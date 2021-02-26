@@ -1,13 +1,12 @@
 import React from 'react';
 import { Field } from 'formik';
-import { Grid } from '@material-ui/core';
+import { Grid, GridProps } from '@material-ui/core';
 import {
     CheckboxWithLabel as MUICheckboxWithLabel,
     CheckboxWithLabelProps as MUICheckboxWithLabelProps,
 } from 'formik-material-ui';
 
-import { Event } from '../../../interfaces/event';
-import { GridProps } from '../../../interfaces/MaterialUI';
+import { Event } from '../../../ts/types';
 
 import useStyles from './CheckboxWithLabelStyles';
 

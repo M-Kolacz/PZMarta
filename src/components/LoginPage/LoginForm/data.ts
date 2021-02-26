@@ -10,7 +10,7 @@ export const initialValues = {
     [PASSWORD]: '',
 };
 
-export interface LoginFormInterface {
+export interface ILoginFormInterface {
     [EMAIL]: string;
     [PASSWORD]: string;
 }

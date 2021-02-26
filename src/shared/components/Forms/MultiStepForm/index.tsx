@@ -4,15 +4,17 @@ import { Button, Grid } from '@material-ui/core';
 
 import useStyles from './FormStyles';
 
-export interface FormikStepProps
+export interface IFormikStepProps
     extends Pick<FormikConfig<FormikValues>, 'children' | 'validationSchema'> {}
 
-export interface FormikStepperProps extends FormikConfig<FormikValues> {
+export interface IFormikStepperProps extends FormikConfig<FormikValues> {
     handleBack: () => void;
     handleNext: () => void;
 }
 
-export const FormikStep = ({ children }: FormikStepProps) => {
+export interface IFormikStep extends Pick<FormikConfig<FormikValues>, 'validationSchema'> {}
+
+export const FormikStep = ({ children }: IFormikStepProps) => {
     return <>{children}</>;
 };
 
@@ -21,12 +23,14 @@ export const FormikStepper = ({
     handleBack,
     handleNext,
     ...props
-}: FormikStepperProps) => {
+}: IFormikStepperProps) => {
     const classes = useStyles();
 
-    const childrenArray = React.Children.toArray(children) as React.ReactElement<FormikStepProps>[];
+    const childrenArray = React.Children.toArray(
+        children,
+    ) as React.ReactElement<IFormikStepProps>[];
     const [step, setStep] = useState(0);
-    const currentChild = childrenArray[step] as React.ReactElement<FormikStepProps>;
+    const currentChild = childrenArray[step] as React.ReactElement<IFormikStepProps>;
 
     const isLastStep = () => {
         return step === childrenArray.length - 1;

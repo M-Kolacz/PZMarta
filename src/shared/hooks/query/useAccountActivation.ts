@@ -4,23 +4,17 @@ import { useQuery } from 'react-query';
 import { ACCOUNT_ACTIVATION } from '../../SSOT/queryKeys';
 import { acoountActivationApi } from '../../SSOT/paths/apiPaths';
 
-interface Response {
-    token: string;
-    userId: string;
-}
-interface ErrorResponse {
-    message: string;
-}
+import { IUserData, IErrorResponse } from '../../ts/interfaces';
 
 export const useAccountActivation = (token: string) => {
     const postAccountActivation = async () => {
-        const { data } = await axios.post<Response>(acoountActivationApi, {
+        const { data } = await axios.post<IUserData>(acoountActivationApi, {
             token,
         });
         return data;
     };
 
-    const accountActivation = useQuery<Response, AxiosError<ErrorResponse>, Response>(
+    const accountActivation = useQuery<IUserData, AxiosError<IErrorResponse>, IUserData>(
         ACCOUNT_ACTIVATION,
         postAccountActivation,
         {

@@ -168,7 +168,7 @@ export const thirdStepInitialValues = {
     [CONTACT_LOCAL_NUMBER]: '',
 };
 
-export interface ThirdStepForm {
+export interface IThirdStepForm {
     [DAMAGE_OWNER]: DamageOwner;
     [DAMAGE_OWNER_LEASING]: string;
     [APPLICANT_NAME]: string;
