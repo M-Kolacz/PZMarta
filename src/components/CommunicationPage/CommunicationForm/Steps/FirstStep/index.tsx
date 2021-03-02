@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormikConfig, FormikValues, useFormikContext } from 'formik';
+import { useFormikContext } from 'formik';
 
 import { fieldsData, IFirstStepForm } from './data';
 import {
@@ -70,7 +70,7 @@ const FirstStep: React.FC<IFormikStep> = () => {
                 />
             )}
 
-            <SectionForm>Właściciel polisy</SectionForm>
+            <SectionForm> Właściciel polisy</SectionForm>
             <RadioGroup
                 {...owner}
                 controls={ownerOptions}

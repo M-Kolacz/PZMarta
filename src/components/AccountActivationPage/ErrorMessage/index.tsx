@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import { Button, Typography, Grid } from '@material-ui/core';
+import { Typography, Grid } from '@material-ui/core';
 
 import imageActivation from '../../../images/svg/errorEmail.svg';
 
