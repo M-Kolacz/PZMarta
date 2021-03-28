@@ -55,6 +55,7 @@ The PZMarta website is an attempt to recreate the insurance website. As part of 
 ### Built With
 
 * [React](https://reactjs.org/)
+* [React Query](https://react-query.tanstack.com/)
 * [Typescript](https://www.typescriptlang.org/docs/)
 * [Material-UI](https://material-ui.com/)
 * [Formik](https://formik.org/)
