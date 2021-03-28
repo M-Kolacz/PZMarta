@@ -1,46 +1,97 @@
-# Getting Started with Create React App
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/M-Kolacz/PZMartaFrontend">
+    <img src="readme/logo.svg" alt="Logo" width="324" height="240">
+  </a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  <h3 align="center">PZ Marta</h3>
 
-## Available Scripts
+  <p align="center">
+    Insurance service
+    <br />
+    <a href="https://github.com/M-Kolacz/PZMartaFrontend"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="http://zlobeknowahuta.pl/">Live view</a>
+    ·
+    <a href="https://github.com/M-Kolacz/PZMartaFrontend/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/M-Kolacz/PZMartaFrontend/issues">Request Feature</a>
+  </p>
+</p>
 
-In the project directory, you can run:
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-### `yarn build`
+[![Product Name Screen Shot][website-screenshot]](http://zlobeknowahuta.pl/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The PZMarta website is an attempt to recreate the insurance website. As part of using the website, the user will be able to register an account, report the damage to the insurance company and check the current status of the report.
+### Built With
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* [React](https://reactjs.org/)
+* [Typescript](https://www.typescriptlang.org/docs/)
+* [Material-UI](https://material-ui.com/)
+* [Formik](https://formik.org/)
+* [Yup](https://github.com/jquense/yup)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+## Actual Status
+Because of the lack of time due to internships and attending studies, the project was suspended. In the near future I intend to return to this project because I want to solve interesting problems that I encountered during this project like optimization and complexity of forms.
+<!-- GETTING STARTED -->
+## Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To get a local copy up and running follow these simple steps.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Prerequisites
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This is an example of how to list things you need to use the software and how to install them.
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Installation
 
-## Learn More
+1. Clone the repo
+   ```sh
+   git clone https://github.com/M-Kolacz/EncePenceHuta.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<!-- CONTACT -->
+## Contact
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Email - michal.kolacz45@gmail.com
+* Linkedin - https://www.linkedin.com/in/m-kolacz/
+* Twitter - [@M_Kolacz](https://twitter.com/M_Kolacz)
+
+[website-screenshot]: readme/screenshot.png
